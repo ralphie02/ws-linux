@@ -33,11 +33,11 @@ done
     sed "/\#\!.*bash\s*$/a \\\nBLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH RUBY_VER=$RUBY_VER" | bash
 
 # --------------- CONFIG RAILS --------------- #
-[ "$RAILS_VER" != "" ] && 
+[ "$RAILS_VER" != "" ] && \
     wget -O- $BASE_URL/_ConfigRails.md | sed '$ d' | sed '1,1d' | \
     sed "/\#\!.*bash\s*$/a \\\nRAILS_VER=$RAILS_VER" | bash
 
 # --------------- CONFIG NODE --------------- #
 [ "$NODE_VER" != "" ] && 
-    wget -O-$BASE_URL/_ConfigNode.md | sed '$ d' | sed '1,1d' | \
+    wget -O- $BASE_URL/_ConfigNode.md | sed '$ d' | sed '1,1d' | \
     sed "/\#\!.*bash\s*$/a \\\nNODE_VER=$NODE_VER" | bash
