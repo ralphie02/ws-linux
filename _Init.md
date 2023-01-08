@@ -6,8 +6,8 @@ sudo apt update && sudo apt install -y --no-install-recommends \
     mlocate keychain rsync curl wget man-db net-tools software-properties-common telnet
 
 # --------------- ADD BLOCK CREATOR SCRIPT --------------- #
-BLOCK_SCRIPT_PATH=/tmp/rahtomate/block_script.sh
-wget -O- $BASE_URL/_BlockScript.md | sed '$ d' | sed '1,1d' > $BLOCK_SCRIPT_PATH && chmod +x $BLOCK_SCRIPT_PATH
+BLOCK_SCRIPT_PATH=/tmp/rahtomation_block_script.sh
+wget -O- $BASE_URL/_BlockScript.md | sed '$ d' | sed '1,1d' > "$BLOCK_SCRIPT_PATH" && chmod +x $BLOCK_SCRIPT_PATH
 
 # --------------- GENERATE SSH --------------- #
 wget -O- $BASE_URL/_ConfigSsh.md | sed '$ d' | sed '1,1d' | \
