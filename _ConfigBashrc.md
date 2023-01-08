@@ -1,7 +1,7 @@
 ```bash
 #!/bin/bash
 
-# requires add_cf_block script
+# requires BLOCK_SCRIPT
 # https://superuser.com/a/976712 - line regex replace
 
 # Update HISTSIZE to 200000 & HISTFILESIZE to 300000
@@ -29,5 +29,5 @@ export TERM=xterm-256color
 EOF
 # --------------- BASHRC END BLOCK --------------- #
 
-${ADD_CFG_BLOCK_PATH} ~/.bashrc "$BASHRC"
+${BLOCK_SCRIPT_PATH} ~/.bashrc "$BASHRC"
 ```

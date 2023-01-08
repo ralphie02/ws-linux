@@ -12,5 +12,5 @@ set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 EOF
 # --------------- VIMRC END BLOCK --------------- # 
 
-${ADD_CFG_BLOCK_PATH} ~/.vimrc "$VIMRC" '""------ BEGIN BLOCK' '""------ END BLOCK'
+${BLOCK_SCRIPT_PATH} ~/.vimrc "$VIMRC" '""------ BEGIN BLOCK' '""------ END BLOCK'
 ```

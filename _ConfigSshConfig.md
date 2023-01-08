@@ -8,5 +8,5 @@ Host *
 EOF
 # --------------- SSH_CFG END BLOCK --------------- #
 
-${ADD_CFG_BLOCK_PATH} ~/.ssh/config "$SSH_CFG"
+${BLOCK_SCRIPT_PATH} ~/.ssh/config "$SSH_CFG"
 ```

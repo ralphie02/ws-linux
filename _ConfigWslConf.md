@@ -17,5 +17,5 @@ appendWindowsPath = false
 EOF
 # --------------- WSL_CONF END BLOCK --------------- #
 
-sudo ${ADD_CFG_BLOCK_PATH} /etc/wsl.conf "$WSL_CONF"
+sudo ${BLOCK_SCRIPT_PATH} /etc/wsl.conf "$WSL_CONF"
 ```

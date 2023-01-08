@@ -17,5 +17,5 @@ set bell-style none
 EOF
 # --------------- INPUTRC END BLOCK --------------- #
 
-${ADD_CFG_BLOCK_PATH} ~/.inputrc "$INPUTRC"
+${BLOCK_SCRIPT_PATH} ~/.inputrc "$INPUTRC"
 ```
