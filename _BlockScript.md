@@ -20,7 +20,7 @@ add_cfg_block () {
 
   mkdir -p $filepath && touch $FILE && \
     grep "$block_wrap" $FILE && \
-    sed -i "/^${BLOCK_BEGIN}/,/^${BLOCK_END}/c${BLOCK_BEGIN}\n${block_body}\n${BLOCK_END}" $FILE && || \
+    sed -i "/^${BLOCK_BEGIN}/,/^${BLOCK_END}/c${BLOCK_BEGIN}\n${block_body}\n${BLOCK_END}" $FILE || \
     echo -e "$BLOCK_BEGIN\n$block_body\n$BLOCK_END" >> $FILE
 }
 add_cfg_block
