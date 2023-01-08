@@ -1,5 +1,5 @@
 ```bash
-#!/bin/bash        
+#!/bin/bash
 
 if ! grep -qi microsoft /proc/version; then exit; fi
 

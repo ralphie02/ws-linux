@@ -11,11 +11,11 @@ wget -O- $BASE_URL/_BlockScript.md | sed '$ d' | sed '1,1d' > "$BLOCK_SCRIPT_PAT
 
 # --------------- GENERATE SSH --------------- #
 wget -O- $BASE_URL/_ConfigSsh.md | sed '$ d' | sed '1,1d' | \
-    sed "/\#\!.*bash$/a \\\BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH GIT_CONF_EMAIL=$GIT_CONF_EMAIL" | bash
+    sed "/\#\!.*bash\s*$/a \\\BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH GIT_CONF_EMAIL=$GIT_CONF_EMAIL" | bash
 
 # --------------- GIT INSTALL/UPDATE --------------- #
 wget -O- $BASE_URL/_ConfigGit.md | sed '$ d' | sed '1,1d' | \
-    sed "/\#\!.*bash$/a \\\nGIT_CONF_EMAIL=$GIT_CONF_EMAIL GIT_CONF_NAME=$GIT_CONF_NAME" | bash
+    sed "/\#\!.*bash\s*$/a \\\nGIT_CONF_EMAIL=$GIT_CONF_EMAIL GIT_CONF_NAME=$GIT_CONF_NAME" | bash
 
 # --------------- FZF INSTALL/UPDATE --------------- #
 wget -O- $BASE_URL/_ConfigFzf.md | sed '$ d' | sed '1,1d' | bash
@@ -24,20 +24,20 @@ wget -O- $BASE_URL/_ConfigFzf.md | sed '$ d' | sed '1,1d' | bash
 BLOCK_CFGS=(ConfigFzf ConfigBashrc ConfigInputrc ConfigWslConf)
 for cfg in ${BLOCK_CFGS[@]}; do 
     wget -O- $BASE_URL/_$cfg.md | sed '$ d' | sed '1,1d' | \
-        sed "/\#\!.*bash$/a \\\nBLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH" | bash
+        sed "/\#\!.*bash\s*$/a \\\nBLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH" | bash
 done
 
 # --------------- CONFIG RUBY --------------- #
 [ "$RAILS_VER" != "" ] || [ "$RUBY_VER" != "" ] && \
     wget -O- $BASE_URL/_ConfigRuby.md | sed '$ d' | sed '1,1d' | \
-    sed "/\#\!.*bash$/a \\\nBLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH RUBY_VER=$RUBY_VER" | bash
+    sed "/\#\!.*bash\s*$/a \\\nBLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH RUBY_VER=$RUBY_VER" | bash
 
 # --------------- CONFIG RAILS --------------- #
 [ "$RAILS_VER" != "" ] && 
     wget -O- $BASE_URL/_ConfigRails.md | sed '$ d' | sed '1,1d' | \
-    sed "/\#\!.*bash$/a \\\nRAILS_VER=$RAILS_VER" | bash
+    sed "/\#\!.*bash\s*$/a \\\nRAILS_VER=$RAILS_VER" | bash
 
 # --------------- CONFIG NODE --------------- #
 [ "$NODE_VER" != "" ] && 
     wget -O-$BASE_URL/_ConfigNode.md | sed '$ d' | sed '1,1d' | \
-    sed "/\#\!.*bash$/a \\\nNODE_VER=$NODE_VER" | bash
+    sed "/\#\!.*bash\s*$/a \\\nNODE_VER=$NODE_VER" | bash
