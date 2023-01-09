@@ -1,7 +1,7 @@
 ```bash
 #!/bin/bash
 
-sudo apt-get install -y --no-install-recommends zlib1g-dev libssl-dev libreadline-dev libyaml-dev libffi-dev && \
+sudo apt-get install -y --no-install-recommends gcc g++ make zlib1g-dev libssl-dev libreadline-dev libyaml-dev libffi-dev && \
     git -C ~/.rbenv pull || \
         git clone --depth 1 https://github.com/rbenv/rbenv.git ~/.rbenv && \
     git -C ~/.rbenv/plugins/ruby-build pull || \
@@ -14,10 +14,6 @@ RBENV_INIT='eval "$(rbenv init -)"'
 grep -qxF "$RBENV_INIT" ~/.bashrc || echo "$RBENV_INIT" >> ~/.bashrc
 ~/.rbenv/bin/rbenv install -l > /tmp/ruby-versions
 RUBY_VER=$(grep $RUBY_VER /tmp/ruby-versions || egrep ^[0-9]\.[0-9]+\.[0-9]+ /tmp/ruby-versions | tail -1)
-
-~/.rbenv/bin/rbenv versions | grep $RUBY_VER || \
-    ~/.rbenv/bin/rbenv install $RUBY_VER && ~/.rbenv/bin/rbenv global $RUBY_VER && \
-    ~/.rbenv/shims/gem install awesome_print && update_irbrc
 
 update_irbrc() {
     # --------------- IRBRC BEGIN BLOCK --------------- #
@@ -34,5 +30,9 @@ update_irbrc() {
     
     ${ADD_CFG_BLOCK_PATH} ~/.irbrc "$IRBRC"
 }
+
+~/.rbenv/bin/rbenv versions | grep $RUBY_VER || \
+    ~/.rbenv/bin/rbenv install $RUBY_VER && ~/.rbenv/bin/rbenv global $RUBY_VER && \
+    ~/.rbenv/shims/gem install awesome_print && update_irbrc
 
 ```
