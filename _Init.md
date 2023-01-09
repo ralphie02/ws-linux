@@ -14,7 +14,7 @@ run_config() {
     wget -qO- $1 | sed '$ d' | sed '1,1d' | sed "/\#\!.*bash\s*$/a \\\n$2" | bash
 }
 
-# --------------- CONFIG FZF BASHRC VIMRC INPUTRC WSL_CONF --------------- #
+# --------------- CONFIG SSH GIT FZF BASHRC VIMRC INPUTRC WSL_CONF --------------- #
 CONFIGS=(ConfigSsh ConfigGit ConfigFzf ConfigBashrc ConfigVimrc ConfigInputrc ConfigWslConf)
 CFG_VARS="BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH GIT_CONF_EMAIL=$GIT_CONF_EMAIL GIT_CONF_NAME=$GIT_CONF_NAME"
 for cfg in ${CONFIGS[@]}; do run_config $BASE_URL/_$cfg.md $CFG_VARS; done
