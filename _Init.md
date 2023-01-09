@@ -1,4 +1,5 @@
 ```bash
+#!/bin/bash
 
 BASE_URL=https://raw.githubusercontent.com/ralphie02/ws-linux/master
 
@@ -25,6 +26,7 @@ BLOCK_CFGS=(ConfigFzf ConfigBashrc ConfigInputrc ConfigWslConf)
 for cfg in ${BLOCK_CFGS[@]}; do 
     wget -O- $BASE_URL/_$cfg.md | sed '$ d' | sed '1,1d' | \
         sed "/\#\!.*bash\s*$/a \\\nBLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH" | bash
+    echo $cfg
 done
 
 echo RUBY_INSTALL

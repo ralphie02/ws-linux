@@ -1,4 +1,6 @@
 ```bash
+#!/bin/bash
+
 sudo apt install -y --no-install-recommends git && \
     git config user.name || git config --global user.name "$GIT_CONF_NAME" && \    
     ## git config ... name || while do; ; done && git config ... name && \
@@ -15,5 +17,5 @@ sudo apt install -y --no-install-recommends git && \
     git config color.ui || git config --global color.ui true && \
     git config push.default || git config --global push.default current && \
     git config branch.autoSetupMerge || git config --global branch.autoSetupMerge always && \
-    git config -l
+    echo $(git config -l)
 ```
