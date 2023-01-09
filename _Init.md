@@ -26,24 +26,22 @@ BLOCK_CFGS=(ConfigFzf ConfigBashrc ConfigInputrc ConfigWslConf)
 for cfg in ${BLOCK_CFGS[@]}; do 
     wget -qO- $BASE_URL/_$cfg.md | sed '$ d' | sed '1,1d' | \
         sed "/\#\!.*bash\s*$/a \\\nBLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH" | bash
-    echo $cfg
 done
-
-echo RUBY_INSTALL
 
 # --------------- CONFIG RUBY --------------- #
 [ "$RAILS_VER" != "" ] || [ "$RUBY_VER" != "" ] && \
     wget -qO- $BASE_URL/_ConfigRuby.md | sed '$ d' | sed '1,1d' | \
     sed "/\#\!.*bash\s*$/a \\\nBLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH RUBY_VER=$RUBY_VER" | bash
 
-echo RAILS_INSTALL
 # --------------- CONFIG RAILS --------------- #
 [ "$RAILS_VER" != "" ] && \
     wget -qO- $BASE_URL/_ConfigRails.md | sed '$ d' | sed '1,1d' | \
     sed "/\#\!.*bash\s*$/a \\\nRAILS_VER=$RAILS_VER" | bash
 
-echo NODE_INSTALL
 # --------------- CONFIG NODE --------------- #
 [ "$NODE_VER" != "" ] && 
     wget -qO- $BASE_URL/_ConfigNode.md | sed '$ d' | sed '1,1d' | \
     sed "/\#\!.*bash\s*$/a \\\nNODE_VER=$NODE_VER" | bash
+
+echo "Finito"
+```
