@@ -13,18 +13,11 @@ wget -qO- $BASE_URL/_BlockScript.md | sed '$ d' | sed '1,1d' > "$BLOCK_SCRIPT_PA
 run_config() {
     wget -qO- $1 | sed '$ d' | sed '1,1d' | sed "/\#\!.*bash\s*$/a \\\n$2" | bash
 }
-# --------------- GENERATE SSH --------------- #
-run_config $BASE_URL/_ConfigSsh.md "BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH GIT_CONF_EMAIL=$GIT_CONF_EMAIL"
 
-# --------------- GIT INSTALL/UPDATE --------------- #
-run_config $BASE_URL/_ConfigGit.md "GIT_CONF_EMAIL=$GIT_CONF_EMAIL GIT_CONF_NAME=$GIT_CONF_NAME"
-
-# --------------- FZF INSTALL/UPDATE --------------- #
-wget -qO- $BASE_URL/_ConfigFzf.md | sed '$ d' | sed '1,1d' | bash
-
-# --------------- CONFIG BASHRC INPUTRC WSL_CONF --------------- #
-BLOCK_CFGS=(ConfigBashrc ConfigVimrc ConfigInputrc ConfigWslConf)
-for cfg in ${BLOCK_CFGS[@]}; do run_config $BASE_URL/_$cfg.md "BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH"; done
+# --------------- CONFIG FZF BASHRC VIMRC INPUTRC WSL_CONF --------------- #
+CONFIGS=(ConfigSsh ConfigGit ConfigFzf ConfigBashrc ConfigVimrc ConfigInputrc ConfigWslConf)
+CFG_VARS="BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH GIT_CONF_EMAIL=$GIT_CONF_EMAIL GIT_CONF_NAME=$GIT_CONF_NAME"
+for cfg in ${CONFIGS[@]}; do run_config $BASE_URL/_$cfg.md $CFG_VARS; done
 
 # --------------- CONFIG RUBY --------------- #
 [ "$RAILS_VER" != "" ] || [ "$RUBY_VER" != "" ] && \
