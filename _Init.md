@@ -10,38 +10,32 @@ sudo apt update && sudo apt install -y --no-install-recommends \
 BLOCK_SCRIPT_PATH=/tmp/rahtomation_block_script.sh
 wget -qO- $BASE_URL/_BlockScript.md | sed '$ d' | sed '1,1d' > "$BLOCK_SCRIPT_PATH" && chmod +x $BLOCK_SCRIPT_PATH
 
+run_config() {
+    wget -qO- $1 | sed '$ d' | sed '1,1d' | sed "/\#\!.*bash\s*$/a \\\n$2" | bash
+}
 # --------------- GENERATE SSH --------------- #
-wget -qO- $BASE_URL/_ConfigSsh.md | sed '$ d' | sed '1,1d' | \
-    sed "/\#\!.*bash\s*$/a \\\BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH GIT_CONF_EMAIL=$GIT_CONF_EMAIL" | bash
+run_config $BASE_URL/_ConfigSsh.md "BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH GIT_CONF_EMAIL=$GIT_CONF_EMAIL"
 
 # --------------- GIT INSTALL/UPDATE --------------- #
-wget -qO- $BASE_URL/_ConfigGit.md | sed '$ d' | sed '1,1d' | \
-    sed "/\#\!.*bash\s*$/a \\\nGIT_CONF_EMAIL=$GIT_CONF_EMAIL GIT_CONF_NAME=$GIT_CONF_NAME" | bash
+run_config $BASE_URL/_ConfigGit.md "GIT_CONF_EMAIL=$GIT_CONF_EMAIL GIT_CONF_NAME=$GIT_CONF_NAME"
 
 # --------------- FZF INSTALL/UPDATE --------------- #
 wget -qO- $BASE_URL/_ConfigFzf.md | sed '$ d' | sed '1,1d' | bash
 
-# --------------- CONFIG FZF BASHRC INPUTRC WSL_CONF --------------- #
-BLOCK_CFGS=(ConfigFzf ConfigBashrc ConfigInputrc ConfigWslConf)
-for cfg in ${BLOCK_CFGS[@]}; do 
-    wget -qO- $BASE_URL/_$cfg.md | sed '$ d' | sed '1,1d' | \
-        sed "/\#\!.*bash\s*$/a \\\nBLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH" | bash
-done
+# --------------- CONFIG BASHRC INPUTRC WSL_CONF --------------- #
+run_config $BASE_URL/_ConfigBashrc.md "BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH"
+run_config $BASE_URL/_ConfigInputrc.md "BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH GIT_CONF_EMAIL=$GIT_CONF_EMAIL"
+run_config $BASE_URL/_ConfigWslConf.md "BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH GIT_CONF_EMAIL=$GIT_CONF_EMAIL"
 
 # --------------- CONFIG RUBY --------------- #
 [ "$RAILS_VER" != "" ] || [ "$RUBY_VER" != "" ] && \
-    wget -qO- $BASE_URL/_ConfigRuby.md | sed '$ d' | sed '1,1d' | \
-    sed "/\#\!.*bash\s*$/a \\\nBLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH RUBY_VER=$RUBY_VER" | bash
+    run_config $BASE_URL/_ConfigRuby.md "BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH RUBY_VER=$RUBY_VER"
 
 # --------------- CONFIG RAILS --------------- #
-[ "$RAILS_VER" != "" ] && \
-    wget -qO- $BASE_URL/_ConfigRails.md | sed '$ d' | sed '1,1d' | \
-    sed "/\#\!.*bash\s*$/a \\\nRAILS_VER=$RAILS_VER" | bash
+[ "$RAILS_VER" != "" ] && run_config $BASE_URL/_ConfigRails.md "RAILS_VER=$RAILS_VER"
 
 # --------------- CONFIG NODE --------------- #
-[ "$NODE_VER" != "" ] && 
-    wget -qO- $BASE_URL/_ConfigNode.md | sed '$ d' | sed '1,1d' | \
-    sed "/\#\!.*bash\s*$/a \\\nNODE_VER=$NODE_VER" | bash
+[ "$NODE_VER" != "" ] && run_config $BASE_URL/_ConfigNode.md "NODE_VER=$NODE_VER"
 
 echo "Finito"
 ```

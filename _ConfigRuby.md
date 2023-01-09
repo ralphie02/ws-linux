@@ -15,24 +15,26 @@ grep -qxF "$RBENV_INIT" ~/.bashrc || echo "$RBENV_INIT" >> ~/.bashrc
 ~/.rbenv/bin/rbenv install -l > /tmp/ruby-versions
 RUBY_VER=$(grep $RUBY_VER /tmp/ruby-versions || egrep ^[0-9]\.[0-9]+\.[0-9]+ /tmp/ruby-versions | tail -1)
 
-update_irbrc() {
-    # --------------- IRBRC BEGIN BLOCK --------------- #
-    read -rd '' IRBRC << 'EOF'
-    require "awesome_print"
-    
-    IRB.conf[:EVAL_HISTORY] = 1000000
-    IRB.conf[:SAVE_HISTORY] = 1000000
-    IRB.conf[:USE_MULTILINE] = false
-    
-    AwesomePrint.irb! if defined?(AwesomePrint)
-    EOF
-    # --------------- IRBRC END BLOCK --------------- #
-    
-    ${ADD_CFG_BLOCK_PATH} ~/.irbrc "$IRBRC"
-}
-
 ~/.rbenv/bin/rbenv versions | grep $RUBY_VER || \
     ~/.rbenv/bin/rbenv install $RUBY_VER && ~/.rbenv/bin/rbenv global $RUBY_VER && \
-    ~/.rbenv/shims/gem install awesome_print && update_irbrc
+    ~/.rbenv/shims/gem install awesome_print
 
+update_irbrc() {
+
+# --------------- IRBRC BEGIN BLOCK --------------- #
+read -rd '' IRBRC << 'EOF'
+require "awesome_print"
+
+IRB.conf[:EVAL_HISTORY] = 1000000
+IRB.conf[:SAVE_HISTORY] = 1000000
+IRB.conf[:USE_MULTILINE] = false
+
+AwesomePrint.irb! if defined?(AwesomePrint)
+EOF
+# --------------- IRBRC END BLOCK --------------- #
+
+${BLOCK_SCRIPT_PATH} ~/.irbrc "$IRBRC"
+}
+
+~/.rbenv/bin/rbenv versions && update_irbrc
 ```
