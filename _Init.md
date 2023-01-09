@@ -23,9 +23,8 @@ run_config $BASE_URL/_ConfigGit.md "GIT_CONF_EMAIL=$GIT_CONF_EMAIL GIT_CONF_NAME
 wget -qO- $BASE_URL/_ConfigFzf.md | sed '$ d' | sed '1,1d' | bash
 
 # --------------- CONFIG BASHRC INPUTRC WSL_CONF --------------- #
-run_config $BASE_URL/_ConfigBashrc.md "BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH"
-run_config $BASE_URL/_ConfigInputrc.md "BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH GIT_CONF_EMAIL=$GIT_CONF_EMAIL"
-run_config $BASE_URL/_ConfigWslConf.md "BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH GIT_CONF_EMAIL=$GIT_CONF_EMAIL"
+BLOCK_CFGS=(ConfigBashrc ConfigVimrc ConfigInputrc ConfigWslConf)
+for cfg in ${BLOCK_CFGS[@]}; do run_config $BASE_URL/_$cfg.md "BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH"; done
 
 # --------------- CONFIG RUBY --------------- #
 [ "$RAILS_VER" != "" ] || [ "$RUBY_VER" != "" ] && \
