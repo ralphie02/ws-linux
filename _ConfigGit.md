@@ -16,6 +16,7 @@ sudo apt install -y --no-install-recommends git && \
 
     git config color.ui || git config --global color.ui true && \
     git config push.default || git config --global push.default current && \
+    git config push.autoSetupRemote || git config --global push.autoSetupRemote true && \
     git config branch.autoSetupMerge || git config --global branch.autoSetupMerge always && \
     echo "$(git config -l)"
 ```
