@@ -1,4 +1,8 @@
 ```bash
+# Seems like this has to be on a separate file. 
+# Lines after the if statement don't run and I can't figure it out...
+# At this point, I don't really care anymore.
+
 #!/bin/bash
 
 sudo apt install -y --no-install-recommends openssh-client
@@ -27,13 +31,4 @@ elif [ ! -f ~/.ssh/id_rsa ]; then
     # read -p "Git email: " GIT_CONF_EMAIL \
     ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C "$GIT_CONF_EMAIL"
 fi
-
-# --------------- SSH_CFG END BLOCK --------------- #
-read -rd '' SSH_CFG << 'EOF'
-Host *
-    StrictHostKeyChecking no
-EOF
-# --------------- SSH_CFG END BLOCK --------------- #
-
-${BLOCK_SCRIPT_PATH} ~/.ssh/config "$SSH_CFG"
 ```

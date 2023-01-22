@@ -1,5 +1,5 @@
 ```bash
-#!/bin/bash
+#!/bin/env bash
 
 # requires BLOCK_SCRIPT
 # https://superuser.com/a/976712 - line regex replace
