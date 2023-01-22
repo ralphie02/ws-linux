@@ -13,7 +13,8 @@ if grep -qi microsoft /proc/version; then
         cp -r /mnt/c/Users/$WIN_USER/.ssh ~/ && chmod 400 ~/.ssh/id_rsa*
     elif [ -f ~/.ssh/id_rsa -a ! -f /mnt/c/Users/$WIN_USER/.ssh/id_rsa ]; then
         cp -r ~/.ssh /mnt/c/Users/$WIN_USER/
-    elif ! [ -f ~/.ssh/id_rsa -o -f /mnt/c/Users/$WIN_USER/.ssh/id_rsa ]; then # read -p "Git email: " GIT_CONF_EMAIL \
+    elif ! [ -f ~/.ssh/id_rsa -o -f /mnt/c/Users/$WIN_USER/.ssh/id_rsa ]; then 
+        # read -p "Git email: " GIT_CONF_EMAIL \
         ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C "$GIT_CONF_EMAIL"
     else
         NEW_SSH_KEY=false
@@ -22,7 +23,8 @@ if grep -qi microsoft /proc/version; then
     NO_COLOR="\033[0m"
     COPY_MESSAGE="\n${GREEN}Copy pub key below to Github SSH keys! \n${NO_COLOR}"
     if $NEW_SSH_KEY; then echo -e "$COPY_MESSAGE" && cat ~/.ssh/id_rsa.pub; fi
-elif [ ! -f ~/.ssh/id_rsa ]; then # read -p "Git email: " GIT_CONF_EMAIL \
+elif [ ! -f ~/.ssh/id_rsa ]; then 
+    # read -p "Git email: " GIT_CONF_EMAIL \
     ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C "$GIT_CONF_EMAIL"
 fi
 
