@@ -3,8 +3,8 @@
 
 BASE_URL=https://raw.githubusercontent.com/ralphie02/ws-linux/master
 
-sudo apt update && sudo apt install -y --no-install-recommends \
-    mlocate keychain rsync curl man-db net-tools software-properties-common telnet
+sudo apt update && sudo apt install -y mlocate keychain rsync curl man-db \
+    net-tools software-properties-common telnet
 
 # --------------- ADD BLOCK CREATOR SCRIPT --------------- #
 BLOCK_SCRIPT_PATH=/tmp/rahtomation_block_script.sh
