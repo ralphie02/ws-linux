@@ -14,9 +14,9 @@ add_cfg_block() {
   local block_wrap=$(echo -e "$BLOCK_BEGIN\n$BLOCK_END")
 
   local block_body="${BLOCK_BODY//\\/\\\\}"
-  block_body="${block_body//\//\\/}"
-  block_body="${block_body//&/\\&}"
-  block_body="${block_body//$'\n'/\\n}"
+  # block_body="${block_body//\//\\/}"
+  # block_body="${block_body//&/\\&}"
+  # block_body="${block_body//$'\n'/\\n}"
 
   mkdir -p $filepath && touch $FILE && \
     grep "$block_wrap" $FILE && \
