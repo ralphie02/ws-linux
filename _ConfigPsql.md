@@ -12,5 +12,5 @@ if ! pgrep -x "postgres" >/dev/null; then sudo postgresql start;  fi
 EOF
 # --------------- PSQL_BASHRC END BLOCK --------------- #
 
-${BLOCK_SCRIPT_PATH} ~/.bashrc "$PSQL_BASHRC"
+${BLOCK_SCRIPT_PATH} ~/.bashrc "$PSQL_BASHRC" '##------ BEGIN PSQL BLOCK' '##------ END PSQL BLOCK'
 ```
