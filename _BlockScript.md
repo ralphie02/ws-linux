@@ -23,7 +23,7 @@ add_cfg_block() {
   mkdir -p $filepath && touch $FILE && \
     grep "$block_wrap" $FILE && \
     sed -i "$sed_block" $FILE || \
-    printf "$block_wrap" >> $FILE && \
+    printf "\n$block_wrap" >> $FILE && \
     sed -i "$sed_block" $FILE
 }
 add_cfg_block
