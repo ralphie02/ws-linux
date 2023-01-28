@@ -8,7 +8,7 @@ sudo apt install -y libpq-dev && \
 
 # --------------- PSQL_BASHRC BEGIN BLOCK --------------- #
 read -rd '' PSQL_BASHRC << 'EOF'
-if ! pgrep -x "postgres" >/dev/null; then sudo postgresql start;  fi
+if ! pgrep -x "postgres" >/dev/null; then sudo service postgresql start;  fi
 EOF
 # --------------- PSQL_BASHRC END BLOCK --------------- #
 
