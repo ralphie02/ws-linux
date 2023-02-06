@@ -8,6 +8,9 @@
 sed -i '/^HISTSIZE=/{h;s/=.*/=200000/};${x;/^$/{s//HISTSIZE=200000/;H};x}' ~/.bashrc
 sed -i '/^HISTFILESIZE=/{h;s/=.*/=300000/};${x;/^$/{s//HISTFILESIZE=300000/;H};x}' ~/.bashrc
 
+OPT_BIN_PATH='export PATH=/opt/bin:$PATH'
+grep -qxF "$OPT_BIN_PATH" ~/.bashrc || echo "$OPT_BIN_PATH" >> ~/.bashrc
+
 # --------------- BASHRC BEGIN BLOCK --------------- #
 read -rd '' BASHRC << 'EOF'
 parse_git_branch() {

@@ -8,7 +8,7 @@ sudo apt-get install -y --no-install-recommends gcc g++ make zlib1g-dev libssl-d
         git clone --depth 1 https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build && \
     echo 'gem: --no-document' > ~/.gemrc && \
 
-RBENV_PATH='export PATH="$HOME/.rbenv/bin:$PATH"'
+RBENV_PATH='export PATH=$HOME/.rbenv/bin:$PATH'
 grep -qxF "$RBENV_PATH" ~/.bashrc || echo "$RBENV_PATH" >> ~/.bashrc
 RBENV_INIT='eval "$(rbenv init -)"'
 grep -qxF "$RBENV_INIT" ~/.bashrc || echo "$RBENV_INIT" >> ~/.bashrc
