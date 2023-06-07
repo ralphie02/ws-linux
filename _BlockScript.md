@@ -1,3 +1,7 @@
+---
+tags: bash, sed
+---
+
 ```bash
 #!/bin/bash
 

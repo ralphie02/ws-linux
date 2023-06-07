@@ -1,3 +1,6 @@
+---
+tags: awk, bash, git, grep, submodule
+---
 ```bash
 #!/bin/env bash
 
