@@ -1,3 +1,7 @@
+---
+tags: [ssh, ssh/conf]
+---
+
 ```bash
 #!/bin/bash
 
