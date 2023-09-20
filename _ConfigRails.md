@@ -1,3 +1,7 @@
+---
+tags: [rails, rails/conf]
+---
+
 ```bash
 #!/bin/bash
 
