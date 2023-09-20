@@ -1,4 +1,4 @@
-- One-liner
+- copypasta
     ```bash
     sudo apt install --no-install-recommends wget ca-certificates
     # VARS='GIT_CONFIG_EMAIL=<email@mail.com> GIT_CONF_NAME="Your Name" RAILS_VER=(latest|x.x.x|<unset to skip>) RUBY_VER=(latest|x.x.x|<unset to skip>)'
