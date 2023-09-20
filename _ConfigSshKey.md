@@ -1,6 +1,10 @@
+---
+tags: [ssh_key, ssh_key/conf]
+---
+
 ```bash
 # Seems like this has to be on a separate file. 
-# Lines after the if statement don't run and I can't figure it out...
+# Lines after the if block don't run and I can't figure it out...
 # At this point, I don't really care anymore.
 
 #!/bin/bash
