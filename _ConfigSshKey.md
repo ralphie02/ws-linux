@@ -1,5 +1,5 @@
 ---
-tags: [ssh_key, ssh_key/conf]
+tags: [ssh, ssh/conf]
 ---
 
 ```bash
