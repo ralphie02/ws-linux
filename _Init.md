@@ -8,10 +8,10 @@ sudo apt update && sudo apt install -y mlocate keychain rsync curl man-db \
 
 # --------------- ADD BLOCK CREATOR SCRIPT --------------- #
 BLOCK_SCRIPT_PATH=/tmp/rahtomation_block_script.sh
-wget -qO- $BASE_URL/_BlockScript.md | sed '$ d' | sed '1,1d' > "$BLOCK_SCRIPT_PATH" && chmod +x $BLOCK_SCRIPT_PATH
+wget -qO- $BASE_URL/_BlockScript.md | sed '$ d' | sed '1,5d' > "$BLOCK_SCRIPT_PATH" && chmod +x $BLOCK_SCRIPT_PATH
 
 run_config() {
-    wget -qO- $1 | sed '$ d' | sed '1,1d' | sed "/\#\!.*bash\s*$/a \\\n$2" | bash
+    wget -qO- $1 | sed '$ d' | sed '1,5d' | sed "/\#\!.*bash\s*$/a \\\n$2" | bash
 }
 
 # --------------- CONFIG SSH GIT FZF BASHRC VIMRC INPUTRC WSL_CONF --------------- #
