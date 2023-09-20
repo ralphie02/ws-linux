@@ -1,3 +1,7 @@
+---
+tags: [git, git/conf]
+---
+
 ```bash
 #!/bin/bash
 
