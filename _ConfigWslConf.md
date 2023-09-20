@@ -1,3 +1,7 @@
+---
+tags: [wsl, wsl/conf]
+---
+
 ```bash
 #!/bin/bash
 
