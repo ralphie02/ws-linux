@@ -1,3 +1,7 @@
+---
+tags: [vim, vimrc]
+---
+
 ```bash
 #!/bin/bash
 
