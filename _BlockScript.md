@@ -1,7 +1,5 @@
 ---
-tags: 
-- bash
-- sed
+tags: [bash, sed]
 ---
 
 ```bash
