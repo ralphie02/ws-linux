@@ -30,6 +30,7 @@ git_changed() {
 PS1='\[\e[96m\]\w\[\e[94m\]$(git_l_bracket)\[\e[91m\]$(parse_git_branch)\[\e[94m\]$(git_r_bracket)\[\e[93m\]$(git_changed) \[\e[00m\]'
 
 export EDITOR=vim
+export VISUAL=vim
 export LESS="$LESS -R -Q" # disable beep in LESS for Linux on Win10
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
 export TERM=xterm-256color
