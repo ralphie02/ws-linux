@@ -12,6 +12,10 @@ read -rd '' WSL_CONF << 'EOF'
 [automount]
 options = "metadata,umask=22,fmask=11"
 
+# command = "<command-1>; <command-2>"
+[boot]
+command = "service dbus start;"
+
 [network]
 generateHosts = false
 

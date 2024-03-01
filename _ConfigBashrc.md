@@ -34,6 +34,19 @@ export VISUAL=vim
 export LESS="$LESS -R -Q" # disable beep in LESS for Linux on Win10
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
 export TERM=xterm-256color
+
+#---- START: RUNNING GUI APPS IN WSL ----#
+# https://github.com/microsoft/WSL/issues/7915#issuecomment-1163333151
+
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
+export DBUS_SESSION_BUS_ADDRESS=unix:path=$XDG_RUNTIME_DIR/bus
+sudo mkdir -p $XDG_RUNTIME_DIR
+sudo chmod 700 $XDG_RUNTIME_DIR
+sudo chown $(id -un):$(id -gn) $XDG_RUNTIME_DIR
+ps aux | grep -q -e "[-]-address=$DBUS_SESSION_BUS_ADDRESS" || dbus-daemon --session --address=$DBUS_SESSION_BUS_ADDRESS --nofork --nopidfile --syslog-only >/dev/null 2>&1 & disown
+
+#----- END: RUNNING GUI APPS IN WSL -----#
+
 EOF
 # --------------- BASHRC END BLOCK --------------- #
 
