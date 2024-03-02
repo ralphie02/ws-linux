@@ -40,9 +40,11 @@ export TERM=xterm-256color
 
 export XDG_RUNTIME_DIR=/run/user/$(id -u)
 export DBUS_SESSION_BUS_ADDRESS=unix:path=$XDG_RUNTIME_DIR/bus
-sudo mkdir -p $XDG_RUNTIME_DIR
-sudo chmod 700 $XDG_RUNTIME_DIR
-sudo chown $(id -un):$(id -gn) $XDG_RUNTIME_DIR
+if [ ! -d $XDG_RUNTIME_DIR ]; then
+  sudo mkdir -p $XDG_RUNTIME_DIR
+  sudo chmod 700 $XDG_RUNTIME_DIR
+  sudo chown $(id -un):$(id -gn) $XDG_RUNTIME_DIR
+fi
 ps aux | grep -q -e "[-]-address=$DBUS_SESSION_BUS_ADDRESS" || dbus-daemon --session --address=$DBUS_SESSION_BUS_ADDRESS --nofork --nopidfile --syslog-only >/dev/null 2>&1 & disown
 
 #----- END: RUNNING GUI APPS IN WSL -----#
