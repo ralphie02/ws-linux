@@ -7,5 +7,6 @@ tags: [node, node/conf]
 
 curl -sSL https://deb.nodesource.com/setup_$NODE_VER.x | sudo -E bash - || \
     curl -sSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && \
-    sudo apt-get install -y --no-install-recommends nodejs
+    sudo apt-get install -y --no-install-recommends nodejs && \
+    npm config set prefix '~/.local/'
 ```
