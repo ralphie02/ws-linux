@@ -6,8 +6,10 @@ tags: [awk, bash, git, grep, submodule]
 #!/bin/env bash
 
 # requires BLOCK_SCRIPT
-# https://superuser.com/a/976712 - line regex replace
 
+sudo apt install -y --no-install-recommends xdg-utils libgbm1 libasound2
+
+# https://superuser.com/a/976712 - line regex replace
 # Update HISTSIZE to 200000 & HISTFILESIZE to 300000
 sed -i '/^HISTSIZE=/{h;s/=.*/=200000/};${x;/^$/{s//HISTSIZE=200000/;H};x}' ~/.bashrc
 sed -i '/^HISTFILESIZE=/{h;s/=.*/=300000/};${x;/^$/{s//HISTFILESIZE=300000/;H};x}' ~/.bashrc
