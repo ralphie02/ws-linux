@@ -10,6 +10,16 @@ FPATH=$(wget -qO- https://api.github.com/repos/obsidianmd/obsidian-releases/rele
 TAR_FILE=$(echo $FPATH | rev | cut -d\/ -f1 | rev)
 UNTARRED_DIR=$(echo ${TAR_FILE%.*.*})
 
+rm -rf /tmp/obsidian
+mkdir -p /tmp/obsidian
+wget --no-check-certificate -O /tmp/obsidian.tar.gz $FPATH
+tar -xvf /tmp/obsidian.tar.gz -C /tmp/obsidian/
+sudo mkdir -p /opt/bin
+sudo rm -rf /opt/obsidian && sudo mv /tmp/obsidian/** /opt/obsidian
+sudo ln -s /opt/obsidian/obsidian /opt/bin/obsidian
+rm -rf /tmp/obsidian*
+
+
 git -C ~/.fzf pull || \
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install && \
     SRC_FZF='[ -f ~/.fzf.bash ] && source ~/.fzf.bash' && \
