@@ -6,6 +6,8 @@ tags: bash, fzf, sed
 #!/bin/bash
 # TO BE REPLACED/UPDATED
 
+FILE=$(wget -qO- https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | grep browser_download_url | cut -d\" -f4 | grep 'arm64.tar.gz')
+
 git -C ~/.fzf pull || \
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install && \
     SRC_FZF='[ -f ~/.fzf.bash ] && source ~/.fzf.bash' && \
