@@ -16,7 +16,7 @@ wget --no-check-certificate -O /tmp/obsidian.tar.gz $FPATH
 tar -xvf /tmp/obsidian.tar.gz -C /tmp/obsidian/
 sudo mkdir -p /opt/bin
 sudo rm -rf /opt/obsidian && sudo mv /tmp/obsidian/** /opt/obsidian
-sudo ln -s /opt/obsidian/obsidian /opt/bin/obsidian
+sudo ln -sf /opt/obsidian/obsidian /opt/bin/obsidian
 rm -rf /tmp/obsidian*
 
 # --------------- obsidian.desktop BEGIN BLOCK --------------- #
