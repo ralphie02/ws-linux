@@ -7,8 +7,8 @@ tags: bash, fzf, sed
 
 FPATH=$(wget -qO- https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | grep browser_download_url | cut -d\" -f4 | grep 'arm64.tar.gz')
 VERSION=$(echo $FPATH | rev | cut -d\/ -f2 | rev | cut -c2-)
-TAR_FILE=$(echo $FPATH | rev | cut -d\/ -f1 | rev)
-UNTARRED_DIR=$(echo ${TAR_FILE%.*.*})
+# TAR_FILE=$(echo $FPATH | rev | cut -d\/ -f1 | rev)
+# UNTARRED_DIR=$(echo ${TAR_FILE%.*.*})
 
 rm -rf /tmp/obsidian
 mkdir -p /tmp/obsidian
