@@ -27,7 +27,7 @@ for cfg in ${CONFIGS[@]}; do run_config $BASE_URL/_$cfg.md "$CFG_VARS"; done
 [ "$NODE_VER" != "" ] && run_config $BASE_URL/_ConfigNode.md "NODE_VER=$NODE_VER"
 
 # --------------- CONFIG PSQL --------------- #
-[ "$PSQL_VER" != "" ] && run_config $BASE_URL/_ConfigPsql.md "PSQL_VER=$PSQL_VER"
+run_config $BASE_URL/_ConfigPsql.md "PSQL_VER=$PSQL_VER"
 
 echo "Finito"
 ```
