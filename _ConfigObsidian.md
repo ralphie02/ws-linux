@@ -10,14 +10,14 @@ VERSION=$(echo $FPATH | rev | cut -d\/ -f2 | rev | cut -c2-)
 # TAR_FILE=$(echo $FPATH | rev | cut -d\/ -f1 | rev)
 # UNTARRED_DIR=$(echo ${TAR_FILE%.*.*})
 
-rm -rf /tmp/obsidian
-mkdir -p /tmp/obsidian
-wget --no-check-certificate -O /tmp/obsidian.tar.gz $FPATH
-tar -xvf /tmp/obsidian.tar.gz -C /tmp/obsidian/
-sudo mkdir -p /opt/bin
-sudo rm -rf /opt/obsidian && sudo mv /tmp/obsidian/** /opt/obsidian
-sudo ln -sf /opt/obsidian/obsidian /opt/bin/obsidian
-rm -rf /tmp/obsidian*
+rm -rf /tmp/obsidian* \
+  && mkdir -p /tmp/obsidian \
+  && wget -O /tmp/obsidian.tar.gz $FPATH \
+  && tar -xvf /tmp/obsidian.tar.gz -C /tmp/obsidian \
+  && sudo mkdir -p /opt/bin \
+  && sudo rm -rf /opt/obsidian \
+  && sudo mv /tmp/obsidian/** /opt/obsidian \
+  && sudo ln -sf /opt/obsidian/obsidian /opt/bin/obsidian
 
 # --------------- obsidian.desktop BEGIN BLOCK --------------- #
 read -rd '' OBSIDIAN_DESKTOP << EOF
