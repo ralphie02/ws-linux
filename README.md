@@ -6,7 +6,4 @@
     VARS='GIT_CONF_EMAIL=edit@me.com GIT_CONF_NAME="<EditMe>" RAILS_VER=latest RUBY_VER=latest NODE_VER=lts' && wget -qO- https://raw.githubusercontent.com/ralphie02/ws-linux/master/_Init.md | sed '$ d' | sed '1,1d' | sed "/\#\!.*bash$/a \\\n$VARS" | bash
         # wget -O- <url> | sed '$ d' | sed '1,1d' | sed "s/\/bin\/bash/\/bin\/bash\n\n$VARS/" | bash
         # wget -O- <url> | awk -v vars="$VARS" 'NR>2 {print last; if(NR == 4) print vars} {last=$0}'  | bash
-
-temp notes:
-https://github.com/obsidianmd/obsidian-releases/releases/latest/download/obsidian-1.5.12-arm64.tar.gz
     ```
