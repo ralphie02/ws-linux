@@ -10,7 +10,7 @@ VERSION=$(echo $FPATH | rev | cut -d\/ -f2 | rev | cut -c2-)
 # TAR_FILE=$(echo $FPATH | rev | cut -d\/ -f1 | rev)
 # UNTARRED_DIR=$(echo ${TAR_FILE%.*.*})
 
-rm -rf /tmp/obsidian* \
+sudo rm -rf /tmp/obsidian* \
   && mkdir -p /tmp/obsidian \
   && wget -O /tmp/obsidian.tar.gz $FPATH \
   && tar -xvf /tmp/obsidian.tar.gz -C /tmp/obsidian \
