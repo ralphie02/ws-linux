@@ -7,7 +7,7 @@ tags: bash, fzf, sed
 
 wget -P /tmp https://github.com/ralphie02/nvim-build/releases/latest/download/nvim.tar.gz \
   && sudo mkdir -p /opt/bin
-
+  
 
 FPATH=$(wget -qO- https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | grep browser_download_url | cut -d\" -f4 | grep 'arm64.tar.gz')
 VERSION=$(echo $FPATH | rev | cut -d\/ -f2 | rev | cut -c2-)
