@@ -5,6 +5,7 @@ tags: bash, fzf, sed
 ```bash
 #!/bin/bash
 
+sudo apt install -y --no-install-recommends lazygit
 sudo rm -rf /tmp/nvim* \
   && mkdir -p /tmp/nvim \
   && wget -P /tmp https://github.com/ralphie02/nvim-build/releases/latest/download/nvim.tar.gz \
