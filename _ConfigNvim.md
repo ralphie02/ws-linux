@@ -12,5 +12,6 @@ sudo rm -rf /tmp/nvim* \
   && sudo mkdir -p /opt/bin \
   && sudo rm -rf /opt/nvim \
   && sudo mv /tmp/nvim/** /opt/nvim \
-  && sudo ln -sf /opt/nvim/bin/nvim /opt/bin/nvim
+  && sudo ln -sf /opt/nvim/bin/nvim /opt/bin/nvim \
+  && git -C ~/.config/nvim pull || git clone git@github.com:ralphie02/nvim.git ~/.config/nvim
 ```
