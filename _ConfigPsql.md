@@ -8,7 +8,8 @@ tags: [psql, psql/conf]
 sudo apt install -y libpq-dev && \
     [ "$PSQL" != "" ] && sudo apt install -y postgresql-$PSQL || sudo apt install -y postgresql && \
     sudo service postgresql start && \
-    sudo -u postgres createuser $USER -s
+    sudo -u postgres createuser $USER -s && \
+    createdb -p 5432
 
 # --------------- PSQL_BASHRC BEGIN BLOCK --------------- #
 read -rd '' PSQL_BASHRC << 'EOF'
