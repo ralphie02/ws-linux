@@ -29,7 +29,7 @@ sudo apt-get install -y --no-install-recommends gcc g++ make zlib1g-dev libssl-d
 #    ~/.rbenv/bin/rbenv install $RUBY_VER && ~/.rbenv/bin/rbenv global $RUBY_VER && \
 #    ~/.rbenv/shims/gem install awesome_print
 
-update_irbrc() {
+#update_irbrc() {
 
 # --------------- IRBRC BEGIN BLOCK --------------- #
 read -rd '' IRBRC << 'EOF'
@@ -44,8 +44,8 @@ EOF
 # --------------- IRBRC END BLOCK --------------- #
 
 ${BLOCK_SCRIPT_PATH} ~/.irbrc "$IRBRC"
-}
+#}
 
 #~/.rbenv/bin/rbenv versions && update_irbrc
-~/.asdf/bin/asdf list ruby && update_irbrc
+#~/.asdf/bin/asdf list ruby && update_irbrc
 ```
