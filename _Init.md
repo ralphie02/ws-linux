@@ -12,9 +12,12 @@ run_config() {
 }
 
 # --------------- CONFIG SSH GIT FZF BASHRC VIMRC INPUTRC WSL_CONF --------------- #
-CONFIGS=(ConfigSshKey ConfigSshConf ConfigGit ConfigFzf ConfigBashrc ConfigVimrc ConfigInputrc ConfigWslConf ConfigObsidian ConfigNvim)
+CONFIGS=(ConfigSshKey ConfigSshConf ConfigGit ConfigFzf ConfigBashrc ConfigVimrc ConfigInputrc ConfigWslConf ConfigObsidian ConfigNvim ConfigAsdf)
 CFG_VARS="BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH GIT_CONF_EMAIL=$GIT_CONF_EMAIL GIT_CONF_NAME=$GIT_CONF_NAME"
 for cfg in ${CONFIGS[@]}; do run_config $BASE_URL/_$cfg.md "$CFG_VARS"; done
+
+# --------------- CONFIG NODE --------------- #
+run_config $BASE_URL/_ConfigNode.md
 
 # --------------- CONFIG RUBY --------------- #
 [ "$RAILS_VER" != "" ] || [ "$RUBY_VER" != "" ] && \
@@ -22,9 +25,6 @@ for cfg in ${CONFIGS[@]}; do run_config $BASE_URL/_$cfg.md "$CFG_VARS"; done
 
 # --------------- CONFIG RAILS --------------- #
 [ "$RAILS_VER" != "" ] && run_config $BASE_URL/_ConfigRails.md "RAILS_VER=$RAILS_VER"
-
-# --------------- CONFIG NODE --------------- #
-[ "$NODE_VER" != "" ] && run_config $BASE_URL/_ConfigNode.md "NODE_VER=$NODE_VER"
 
 # --------------- CONFIG PSQL --------------- #
 run_config $BASE_URL/_ConfigPsql.md "PSQL_VER=$PSQL_VER"

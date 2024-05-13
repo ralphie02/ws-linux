@@ -6,22 +6,28 @@ tags: [ruby, ruby/conf]
 #!/bin/bash
 
 sudo apt-get install -y --no-install-recommends gcc g++ make zlib1g-dev libssl-dev libreadline-dev libyaml-dev libffi-dev && \
-    git -C ~/.rbenv pull || \
-        git clone --depth 1 https://github.com/rbenv/rbenv.git ~/.rbenv && \
-    git -C ~/.rbenv/plugins/ruby-build pull || \
-        git clone --depth 1 https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build && \
-    echo 'gem: --no-document' > ~/.gemrc && \
 
-RBENV_PATH='export PATH=$HOME/.rbenv/bin:$PATH'
-grep -qxF "$RBENV_PATH" ~/.bashrc || echo "$RBENV_PATH" >> ~/.bashrc
-RBENV_INIT='eval "$(rbenv init -)"'
-grep -qxF "$RBENV_INIT" ~/.bashrc || echo "$RBENV_INIT" >> ~/.bashrc
-~/.rbenv/bin/rbenv install -l > /tmp/ruby-versions
-RUBY_VER=$(grep $RUBY_VER /tmp/ruby-versions || egrep ^[0-9]\.[0-9]+\.[0-9]+ /tmp/ruby-versions | tail -1)
+  ~/.asdf/bin/asdf plugin add ruby
+  [ $(~/.asdf/bin/asdf list all ruby | grep $RUBY_VER | ws -l) == 1 ] && \
+    ~/.asdf/bin/asdf install ruby $RUBY_VER || \
+    ~/.asdf/bin/asdf install ruby latest && \
+    echo 'gem: --no-document' > ~/.gemrc
+    
+#    git -C ~/.rbenv pull || \
+#        git clone --depth 1 https://github.com/rbenv/rbenv.git ~/.rbenv && \
+#    git -C ~/.rbenv/plugins/ruby-build pull || \
+#        git clone --depth 1 https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build && \
 
-~/.rbenv/bin/rbenv versions | grep $RUBY_VER || \
-    ~/.rbenv/bin/rbenv install $RUBY_VER && ~/.rbenv/bin/rbenv global $RUBY_VER && \
-    ~/.rbenv/shims/gem install awesome_print
+#RBENV_PATH='export PATH=$HOME/.rbenv/bin:$PATH'
+#grep -qxF "$RBENV_PATH" ~/.bashrc || echo "$RBENV_PATH" >> ~/.bashrc
+#RBENV_INIT='eval "$(rbenv init -)"'
+#grep -qxF "$RBENV_INIT" ~/.bashrc || echo "$RBENV_INIT" >> ~/.bashrc
+#~/.rbenv/bin/rbenv install -l > /tmp/ruby-versions
+#RUBY_VER=$(grep $RUBY_VER /tmp/ruby-versions || egrep ^[0-9]\.[0-9]+\.[0-9]+ /tmp/ruby-versions | tail -1)
+#
+#~/.rbenv/bin/rbenv versions | grep $RUBY_VER || \
+#    ~/.rbenv/bin/rbenv install $RUBY_VER && ~/.rbenv/bin/rbenv global $RUBY_VER && \
+#    ~/.rbenv/shims/gem install awesome_print
 
 update_irbrc() {
 
@@ -40,5 +46,6 @@ EOF
 ${BLOCK_SCRIPT_PATH} ~/.irbrc "$IRBRC"
 }
 
-~/.rbenv/bin/rbenv versions && update_irbrc
+#~/.rbenv/bin/rbenv versions && update_irbrc
+~/.asdf/bin/asdf list ruby && update_irbrc
 ```
