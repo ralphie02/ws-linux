@@ -20,11 +20,10 @@ for cfg in ${CONFIGS[@]}; do run_config $BASE_URL/_$cfg.md "$CFG_VARS"; done
 run_config $BASE_URL/_ConfigNode.md
 
 # --------------- CONFIG RUBY --------------- #
-[ "$RAILS_VER" != "" ] || [ "$RUBY_VER" != "" ] && \
-    run_config $BASE_URL/_ConfigRuby.md "BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH RUBY_VER=$RUBY_VER"
+run_config $BASE_URL/_ConfigRuby.md "BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH RUBY_VER=$RUBY_VER"
 
 # --------------- CONFIG RAILS --------------- #
-[ "$RAILS_VER" != "" ] && run_config $BASE_URL/_ConfigRails.md "RAILS_VER=$RAILS_VER"
+run_config $BASE_URL/_ConfigRails.md "RAILS_VER=$RAILS_VER"
 
 # --------------- CONFIG PSQL --------------- #
 run_config $BASE_URL/_ConfigPsql.md "PSQL_VER=$PSQL_VER"
