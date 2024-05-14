@@ -5,22 +5,18 @@ tags: bash, fzf, sed
 ```bash
 #!/bin/bash
 
-git -C ~/.asdf pull || git clone git@github.com/excid3/asdf.git ~/.asdf
-
-# --------------- BASHRC BEGIN BLOCK --------------- #
-read -rd '' BASHRC << 'EOF'
-. "$HOME/.asdf/asdf.sh"
-. "$HOME/.asdf/completions/asdf.bash"
-EOF
-# --------------- BASHRC END BLOCK --------------- #
-
-${BLOCK_SCRIPT_PATH} ~/.bashrc "$BASHRC"
-
-# --------------- BASHRC BEGIN BLOCK --------------- #
-read -rd '' ASDFRC << 'EOF'
-legacy_version_file = yes
-EOF
-# --------------- BASHRC END BLOCK --------------- #
-
-${BLOCK_SCRIPT_PATH} ~/.asdfrc "$ASDFRC"
+echo -e '-------------------- FZF: (START) --------------------\n'
+git -C ~/.fzf pull || \
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && \
+  ~/.fzf/install && \
+  
+  # Add .fzf.bash sourcing in ~/.profile \
+  SRC_FZF='[ -f ~/.fzf.bash ] && source ~/.fzf.bash' && \
+  grep -qxF "$SRC_FZF" ~/.profile || \
+  echo "$SRC_FZF" >> ~/.profile && \
+  
+  # Remove sourcing in ~/.bashrc \
+  sed -i "/$(echo $SRC_FZF | sed 's/\./\\./g' | sed 's/\//\\\//g')/d" ~/.bashrc
+  # (when $SRC_FZF is hardcoded) sed -i /'[ -f ~/.fzf.bash ] && source ~\/\.fzf\.bash'/d
+echo -e '-------------------- FZF: (END) --------------------\n'
 ```

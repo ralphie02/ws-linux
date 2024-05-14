@@ -5,20 +5,25 @@ tags: bash, fzf, sed
 ```bash
 #!/bin/bash
 
+echo -e '-------------------- OBSIDIAN: (START) Set env vars --------------------\n'
 FPATH=$(wget -qO- https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | grep browser_download_url | cut -d\" -f4 | grep 'arm64.tar.gz')
 VERSION=$(echo $FPATH | rev | cut -d\/ -f2 | rev | cut -c2-)
 # TAR_FILE=$(echo $FPATH | rev | cut -d\/ -f1 | rev)
 # UNTARRED_DIR=$(echo ${TAR_FILE%.*.*})
+echo -e '-------------------- OBSIDIAN: (END) Set env vars --------------------\n'
 
-sudo rm -rf /tmp/obsidian* \
-  && mkdir -p /tmp/obsidian \
-  && wget -O /tmp/obsidian.tar.gz $FPATH \
-  && tar -xvf /tmp/obsidian.tar.gz -C /tmp/obsidian \
-  && sudo mkdir -p /opt/bin \
-  && sudo rm -rf /opt/obsidian \
-  && sudo mv /tmp/obsidian/** /opt/obsidian \
-  && sudo ln -sf /opt/obsidian/obsidian /opt/bin/obsidian
+echo -e '-------------------- OBSIDIAN: (START) Download/Extract --------------------\n'
+sudo rm -rf /tmp/obsidian* && \
+  mkdir -p /tmp/obsidian && \
+  wget -O /tmp/obsidian.tar.gz $FPATH && \
+  tar -xvf /tmp/obsidian.tar.gz -C /tmp/obsidian && \
+  sudo mkdir -p /opt/bin && \
+  sudo rm -rf /opt/obsidian && \
+  sudo mv /tmp/obsidian/** /opt/obsidian && \
+  sudo ln -sf /opt/obsidian/obsidian /opt/bin/obsidian
+echo -e '-------------------- OBSIDIAN: (END) Download/Extract --------------------\n'
 
+echo -e '-------------------- OBSIDIAN: (START) Insert obsidian.desktop --------------------\n'
 # --------------- obsidian.desktop BEGIN BLOCK --------------- #
 read -rd '' OBSIDIAN_DESKTOP << EOF
 [Desktop Entry]
@@ -34,4 +39,5 @@ EOF
 # --------------- obsidian.desktop END BLOCK --------------- #
 
 sudo ${BLOCK_SCRIPT_PATH} /usr/share/applications/obsidian.desktop "$OBSIDIAN_DESKTOP"
+echo -e '-------------------- OBSIDIAN: (END) Insert obsidian.desktop --------------------\n'
 ```

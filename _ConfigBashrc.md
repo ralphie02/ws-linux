@@ -5,18 +5,23 @@ tags: [awk, bash, git, grep, submodule]
 ```bash
 #!/bin/env bash
 
-# requires BLOCK_SCRIPT
-
+echo -e '-------------------- BASHRC: (START) Pkg install --------------------\n'
 sudo apt install -y --no-install-recommends xdg-utils libgbm1 libasound2 libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libgtk-3-0
+echo -e '-------------------- BASHRC: (END) Pkg install --------------------\n'
 
 # https://superuser.com/a/976712 - line regex replace
 # Update HISTSIZE to 200000 & HISTFILESIZE to 300000
+echo -e '-------------------- BASHRC: (START) Update HISTSIZE & HISTFILESIZE --------------------\n'
 sed -i '/^HISTSIZE=/{h;s/=.*/=200000/};${x;/^$/{s//HISTSIZE=200000/;H};x}' ~/.bashrc
 sed -i '/^HISTFILESIZE=/{h;s/=.*/=300000/};${x;/^$/{s//HISTFILESIZE=300000/;H};x}' ~/.bashrc
+echo -e '-------------------- BASHRC: (END) Update HISTSIZE & HISTFILESIZE --------------------\n'
 
+echo -e '-------------------- BASHRC: (START) Update PATH --------------------\n'
 OPT_BIN_PATH='export PATH=/opt/bin:$PATH'
 grep -qxF "$OPT_BIN_PATH" ~/.bashrc || echo "$OPT_BIN_PATH" >> ~/.bashrc
+echo -e '-------------------- BASHRC: (END) Update PATH --------------------\n'
 
+echo -e '-------------------- BASHRC: (START) Insert ~/.bashrc block --------------------\n'
 # --------------- BASHRC BEGIN BLOCK --------------- #
 read -rd '' BASHRC << 'EOF'
 parse_git_branch() {
@@ -56,4 +61,5 @@ EOF
 # --------------- BASHRC END BLOCK --------------- #
 
 ${BLOCK_SCRIPT_PATH} ~/.bashrc "$BASHRC"
+echo -e '-------------------- BASHRC: (END) Insert ~/.bashrc block --------------------\n'
 ```

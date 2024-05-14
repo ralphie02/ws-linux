@@ -5,6 +5,7 @@ tags: [inputrc]
 ```bash
 #!/bin/bash
 
+echo -e '-------------------- INPUTRC: (START) Insert ~/.inputrc block --------------------\n'
 # --------------- INPUTRC BEGIN BLOCK --------------- #
 read -rd '' INPUTRC << 'EOF'
 set show-all-if-ambiguous on
@@ -22,4 +23,5 @@ EOF
 # --------------- INPUTRC END BLOCK --------------- #
 
 ${BLOCK_SCRIPT_PATH} ~/.inputrc "$INPUTRC"
+echo -e '-------------------- INPUTRC: (END) Insert ~/.inputrc block --------------------\n'
 ```

@@ -5,6 +5,7 @@ tags: bash, fzf, sed
 ```bash
 #!/bin/bash
 
+echo -e '-------------------- OBSIDIAN: (START) Download/Extract --------------------\n'
 sudo rm -rf /tmp/nvim* \
   && mkdir -p /tmp/nvim \
   && wget -P /tmp https://github.com/ralphie02/nvim-build/releases/latest/download/nvim.tar.gz \
