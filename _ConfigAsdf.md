@@ -6,7 +6,7 @@ tags: bash, fzf, sed
 #!/bin/bash
 
 echo -e '-------------------- ASDF: (START) Download/extract --------------------\n'
-git -C ~/.asdf pull || git clone git@github.com/excid3/asdf.git ~/.asdf
+git -C ~/.asdf pull || git clone git@github.com:excid3/asdf.git ~/.asdf
 echo -e '-------------------- ASDF: (END) Download/extract --------------------\n'
 
 echo -e '-------------------- ASDF: (START) Insert block to ~/.bashrc --------------------\n'
