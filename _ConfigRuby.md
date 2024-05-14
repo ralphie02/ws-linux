@@ -10,6 +10,7 @@ sudo apt-get install -y --no-install-recommends gcc g++ make zlib1g-dev libssl-d
 echo -e '-------------------- RUBY: (END) Pkg install --------------------\n'
 
 echo -e '-------------------- RUBY: (START) Install via asdf + gemrc --------------------\n'
+source ~/.asdf/asdf.sh
 ~/.asdf/bin/asdf plugin add ruby
 [ $(~/.asdf/bin/asdf list all ruby | grep "$RUBY_VER" | wc -l) == 1 ] && \
   ~/.asdf/bin/asdf install ruby $RUBY_VER && ~/.asdf/bin/asdf global ruby $RUBY_VER || \
