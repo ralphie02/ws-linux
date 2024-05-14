@@ -11,8 +11,8 @@ tags: [rails, rails/conf]
 
 echo -e '-------------------- RAILS: (START) Set corepack/yarn --------------------\n'
 ~/.asdf/shims/corepack enable && \
-  ~/.asdf/shims/yarn set version stable && \
-  ~/.asdf/shims/yarn install
+  ~/.asdf/shims/yarn set version stable
+  #~/.asdf/shims/yarn install
 echo -e '-------------------- RAILS: (END) Set corepack/yarn --------------------\n'
 
 echo -e '-------------------- RAILS: (START) asdf/shims/gem install bundler --------------------\n'
