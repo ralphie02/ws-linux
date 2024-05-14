@@ -42,18 +42,21 @@ add_cfg_block() {
 
   local sed_block="/^${BLOCK_BEGIN}/,/^${BLOCK_END}/c${BLOCK_BEGIN}\n${block_body}\n${BLOCK_END}"
 
+  echo -e '-------------------- BLOCKSCRIPT: (START) --------------------\n'
   GREEN="\033[0;32m"
   NO_COLOR="\033[0m"
-  MESSAGE="\nInserting block:\n${GREEN}${sed_block}\nTo${filepath}\n${NO_COLOR}"
+  MESSAGE="Inserting block:\n\n${GREEN}${BLOCK_BODY}${NO_COLOR}\n\nTo ${FILE} ${filepath}\n"
+  echo -e "$MESSAGE"
   mkdir -p $filepath && touch $FILE && \
     # Checks if the wrapper (BLOCK_BEGIN & BLOCK_END) exists
-    grep "$block_wrap" $FILE && \
+    grep -q "$block_wrap" $FILE && \
     # Insert BLOCK_BODY between BEGIN & END
     sed -i "$sed_block" $FILE || \
     # Insert wrapper if check above (grep) is falsey
     printf "\n$block_wrap" >> $FILE && \
     # Insert BLOCK_BODY between BEGIN & END
     sed -i "$sed_block" $FILE
+  echo -e '-------------------- BLOCKSCRIPT: (END) --------------------\n'
 }
 add_cfg_block
 ```
