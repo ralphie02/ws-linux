@@ -7,7 +7,8 @@ tags: [psql, psql/conf]
 
 echo -e '-------------------- PSQL: (START) Pkg install --------------------\n'
 sudo apt install -y libpq-dev && \
-  [ "$PSQL" != "" ] && sudo apt install -y postgresql-$PSQL || sudo apt install -y postgresql
+  [ "$PSQL" != "" ] && LANG=en_US.UTF-8 LC_ALL=C sudo apt install -y postgresql-$PSQL || \
+  LANG=en_US.UTF-8 LC_ALL=C sudo apt install -y postgresql
 echo -e '-------------------- PSQL: (END) Pkg install --------------------\n'
 
 echo -e '-------------------- PSQL: (START) Service start --------------------\n'
