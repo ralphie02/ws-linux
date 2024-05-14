@@ -5,13 +5,18 @@ tags: [ruby, ruby/conf]
 ```bash
 #!/bin/bash
 
-sudo apt-get install -y --no-install-recommends gcc g++ make zlib1g-dev libssl-dev libreadline-dev libyaml-dev libffi-dev && \
+echo -e '-------------------- RUBY: (START) Pkg install --------------------\n'
+sudo apt-get install -y --no-install-recommends gcc g++ make zlib1g-dev libssl-dev libreadline-dev libyaml-dev libffi-dev
+echo -e '-------------------- RUBY: (END) Pkg install --------------------\n'
 
-  ~/.asdf/bin/asdf plugin add ruby
-  [ $(~/.asdf/bin/asdf list all ruby | grep $RUBY_VER | ws -l) == 1 ] && \
-    ~/.asdf/bin/asdf install ruby $RUBY_VER || \
-    ~/.asdf/bin/asdf install ruby latest && \
-    echo 'gem: --no-document' > ~/.gemrc
+echo -e '-------------------- RUBY: (START) Install via asdf + gemrc --------------------\n'
+~/.asdf/bin/asdf plugin add ruby
+[ $(~/.asdf/bin/asdf list all ruby | grep $RUBY_VER | ws -l) == 1 ] && \
+  ~/.asdf/bin/asdf install ruby $RUBY_VER || \
+  ~/.asdf/bin/asdf install ruby latest && \
+  ~/.asdf/bin/asdf global ruby latest && \
+  echo 'gem: --no-document' > ~/.gemrc
+echo -e '-------------------- RUBY: (END) Install via asdf + gemrc --------------------\n'
     
 #    git -C ~/.rbenv pull || \
 #        git clone --depth 1 https://github.com/rbenv/rbenv.git ~/.rbenv && \
@@ -31,6 +36,7 @@ sudo apt-get install -y --no-install-recommends gcc g++ make zlib1g-dev libssl-d
 
 #update_irbrc() {
 
+echo -e '-------------------- RUBY: (START) Insert block to ~/.irbrc --------------------\n'
 # --------------- IRBRC BEGIN BLOCK --------------- #
 read -rd '' IRBRC << 'EOF'
 require "awesome_print"
@@ -44,6 +50,7 @@ EOF
 # --------------- IRBRC END BLOCK --------------- #
 
 ${BLOCK_SCRIPT_PATH} ~/.irbrc "$IRBRC"
+echo -e '-------------------- RUBY: (END) Insert block to ~/.irbrc --------------------\n'
 #}
 
 #~/.rbenv/bin/rbenv versions && update_irbrc

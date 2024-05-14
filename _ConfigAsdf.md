@@ -9,7 +9,7 @@ echo -e '-------------------- ASDF: (START) Download/extract -------------------
 git -C ~/.asdf pull || git clone git@github.com/excid3/asdf.git ~/.asdf
 echo -e '-------------------- ASDF: (END) Download/extract --------------------\n'
 
-echo -e '-------------------- ASDF: (START) Insert ~/.bashrc block --------------------\n'
+echo -e '-------------------- ASDF: (START) Insert block to ~/.bashrc --------------------\n'
 # --------------- BASHRC BEGIN BLOCK --------------- #
 read -rd '' BASHRC << 'EOF'
 . "$HOME/.asdf/asdf.sh"
@@ -17,14 +17,14 @@ read -rd '' BASHRC << 'EOF'
 EOF
 # --------------- BASHRC END BLOCK --------------- #
 ${BLOCK_SCRIPT_PATH} ~/.bashrc "$BASHRC"
-echo -e '-------------------- ASDF: (END) Insert ~/.bashrc block --------------------\n'
+echo -e '-------------------- ASDF: (END) Insert block to ~/.bashrc --------------------\n'
 
-echo -e '-------------------- ASDF: (START) Insert ~/.asdfrc block --------------------\n'
+echo -e '-------------------- ASDF: (START) Insert block to ~/.asdfrc --------------------\n'
 # --------------- ASDFRC BEGIN BLOCK --------------- #
 read -rd '' ASDFRC << 'EOF'
 legacy_version_file = yes
 EOF
 # --------------- ASDFRC END BLOCK --------------- #
 ${BLOCK_SCRIPT_PATH} ~/.asdfrc "$ASDFRC"
-echo -e '-------------------- ASDF: (END) Insert ~/.asdfrc block --------------------\n'
+echo -e '-------------------- ASDF: (END) Insert block to ~/.asdfrc --------------------\n'
 ```

@@ -5,7 +5,7 @@ tags: [vim, vimrc]
 ```bash
 #!/bin/bash
 
-echo -e '-------------------- VIMRC: (START) Insert ~/.vimrc block --------------------\n'
+echo -e '-------------------- VIMRC: (START) Insert block to ~/.vimrc --------------------\n'
 # --------------- VIMRC BEGIN BLOCK --------------- #
 read -rd '' VIMRC << 'EOF'
 syntax on
@@ -18,5 +18,5 @@ EOF
 # --------------- VIMRC END BLOCK --------------- # 
 
 ${BLOCK_SCRIPT_PATH} ~/.vimrc "$VIMRC" '""------ BEGIN BLOCK' '""------ END BLOCK'
-echo -e '-------------------- VIMRC: (END) Insert ~/.vimrc block --------------------\n'
+echo -e '-------------------- VIMRC: (END) Insert block to ~/.vimrc --------------------\n'
 ```

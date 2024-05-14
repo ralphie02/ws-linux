@@ -23,7 +23,7 @@ sudo rm -rf /tmp/obsidian* && \
   sudo ln -sf /opt/obsidian/obsidian /opt/bin/obsidian
 echo -e '-------------------- OBSIDIAN: (END) Download/Extract --------------------\n'
 
-echo -e '-------------------- OBSIDIAN: (START) Insert obsidian.desktop --------------------\n'
+echo -e '-------------------- OBSIDIAN: (START) Insert block to obsidian.desktop --------------------\n'
 # --------------- obsidian.desktop BEGIN BLOCK --------------- #
 read -rd '' OBSIDIAN_DESKTOP << EOF
 [Desktop Entry]
@@ -39,5 +39,5 @@ EOF
 # --------------- obsidian.desktop END BLOCK --------------- #
 
 sudo ${BLOCK_SCRIPT_PATH} /usr/share/applications/obsidian.desktop "$OBSIDIAN_DESKTOP"
-echo -e '-------------------- OBSIDIAN: (END) Insert obsidian.desktop --------------------\n'
+echo -e '-------------------- OBSIDIAN: (END) Insert block to obsidian.desktop --------------------\n'
 ```

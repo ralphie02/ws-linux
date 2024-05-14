@@ -9,7 +9,7 @@ echo -e '-------------------- WSL CONF: (START) Guard clause -------------------
 if ! grep -qi microsoft /proc/version; then exit; fi
 echo -e '-------------------- WSL CONF: (END) Guard clause --------------------\n'
 
-echo -e '-------------------- WSL CONF: (START) Insert /etc/wsl.conf --------------------\n'
+echo -e '-------------------- WSL CONF: (START) Insert block to /etc/wsl.conf --------------------\n'
 # --------------- WSL_CONF BEGIN BLOCK --------------- #
 read -rd '' WSL_CONF << 'EOF'
 [automount]
@@ -35,5 +35,5 @@ EOF
 # --------------- WSL_CONF END BLOCK --------------- #
 
 sudo ${BLOCK_SCRIPT_PATH} /etc/wsl.conf "$WSL_CONF"
-echo -e '-------------------- WSL CONF: (END) Insert /etc/wsl.conf --------------------\n'
+echo -e '-------------------- WSL CONF: (END) Insert block to /etc/wsl.conf --------------------\n'
 ```

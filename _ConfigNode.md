@@ -5,17 +5,17 @@ tags: [node, node/conf]
 ```bash
 #!/bin/bash
 
-echo -e '-------------------- NODEJS: (START) Install via asdf --------------------\n'
+echo -e '-------------------- NODE: (START) Install via asdf --------------------\n'
 ~/.asdf/bin/asdf plugin add nodejs
 [ $(~/.asdf/bin/asdf list all nodejs | grep $NODE_VER | ws -l) == 1 ] && \
   ~/.asdf/bin/asdf install nodejs $NODE_VER || \
   ~/.asdf/bin/asdf install nodejs latest
-echo -e '-------------------- NODEJS: (END) Install via asdf --------------------\n'
+echo -e '-------------------- NODE: (END) Install via asdf --------------------\n'
 
-echo -e '-------------------- NODEJS: (START) npm config ~/.local --------------------\n'
+echo -e '-------------------- NODE: (START) npm config ~/.local --------------------\n'
 # https://stackoverflow.com/questions/18088372/how-to-npm-install-global-not-as-root
 npm config set prefix '~/.local/'
-echo -e '-------------------- NODEJS: (END) npm config ~/.local --------------------\n'
+echo -e '-------------------- NODE: (END) npm config ~/.local --------------------\n'
 
 # curl -sSL https://deb.nodesource.com/setup_$NODE_VER.x | sudo -E bash - || \
 #     curl -sSL https://deb.nodesource.com/setup_lts.x | sudo -E bash - && \

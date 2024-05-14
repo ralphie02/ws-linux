@@ -21,7 +21,7 @@ OPT_BIN_PATH='export PATH=/opt/bin:$PATH'
 grep -qxF "$OPT_BIN_PATH" ~/.bashrc || echo "$OPT_BIN_PATH" >> ~/.bashrc
 echo -e '-------------------- BASHRC: (END) Update PATH --------------------\n'
 
-echo -e '-------------------- BASHRC: (START) Insert ~/.bashrc block --------------------\n'
+echo -e '-------------------- BASHRC: (START) Insert block to ~/.bashrc --------------------\n'
 # --------------- BASHRC BEGIN BLOCK --------------- #
 read -rd '' BASHRC << 'EOF'
 parse_git_branch() {
@@ -61,5 +61,5 @@ EOF
 # --------------- BASHRC END BLOCK --------------- #
 
 ${BLOCK_SCRIPT_PATH} ~/.bashrc "$BASHRC"
-echo -e '-------------------- BASHRC: (END) Insert ~/.bashrc block --------------------\n'
+echo -e '-------------------- BASHRC: (END) Insert block to ~/.bashrc --------------------\n'
 ```
