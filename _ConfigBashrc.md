@@ -22,6 +22,7 @@ grep -qxF "$OPT_BIN_PATH" ~/.bashrc || echo "$OPT_BIN_PATH" >> ~/.bashrc
 echo -e '-------------------- BASHRC: (END) Update PATH --------------------\n'
 
 echo -e '-------------------- BASHRC: (START) Insert block to ~/.bashrc --------------------\n'
+
 # --------------- BASHRC BEGIN BLOCK --------------- #
 read -rd '' BASHRC << 'EOF'
 parse_git_branch() {
@@ -56,10 +57,11 @@ fi
 ps aux | grep -q -e "[-]-address=$DBUS_SESSION_BUS_ADDRESS" || dbus-daemon --session --address=$DBUS_SESSION_BUS_ADDRESS --nofork --nopidfile --syslog-only >/dev/null 2>&1 & disown
 
 #----- END: RUNNING GUI APPS IN WSL -----#
-
 EOF
+
 # --------------- BASHRC END BLOCK --------------- #
 
 ${BLOCK_SCRIPT_PATH} ~/.bashrc "$BASHRC"
+
 echo -e '-------------------- BASHRC: (END) Insert block to ~/.bashrc --------------------\n'
 ```
