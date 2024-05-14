@@ -45,7 +45,7 @@ add_cfg_block() {
   echo -e '-------------------- BLOCKSCRIPT: (START) --------------------\n'
   GREEN="\033[0;32m"
   NO_COLOR="\033[0m"
-  MESSAGE="Inserting block:\n\n${GREEN}${BLOCK_BODY}${NO_COLOR}\n\nTo ${FILE} ${filepath}\n"
+  MESSAGE="Inserting block:\n\n${GREEN}${BLOCK_BODY}${NO_COLOR}\n\nTo ${FILE} in ${filepath}\n"
   echo -e "$MESSAGE"
   mkdir -p $filepath && touch $FILE && \
     # Checks if the wrapper (BLOCK_BEGIN & BLOCK_END) exists

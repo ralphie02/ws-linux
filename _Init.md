@@ -26,7 +26,7 @@ run_config $BASE_URL/_ConfigRuby.md "BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH RUBY_V
 run_config $BASE_URL/_ConfigRails.md "RAILS_VER=$RAILS_VER"
 
 # --------------- CONFIG PSQL --------------- #
-run_config $BASE_URL/_ConfigPsql.md "PSQL_VER=$PSQL_VER"
+run_config $BASE_URL/_ConfigPsql.md "BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH PSQL_VER=$PSQL_VER"
 
 echo "Finito"
 ```
