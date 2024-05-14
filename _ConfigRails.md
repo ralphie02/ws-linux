@@ -10,9 +10,9 @@ tags: [rails, rails/conf]
 #     sudo apt-get install -y --no-install-recommends yarn
 
 echo -e '-------------------- RAILS: (START) Set corepack/yarn --------------------\n'
-corepack enable && \
-  yarn set version stable && \
-  yarn install
+~/.asdf/shims/corepack enable && \
+  ~/.asdf/shims/yarn set version stable && \
+  ~/.asdf/shims/yarn install
 echo -e '-------------------- RAILS: (END) Set corepack/yarn --------------------\n'
 
 echo -e '-------------------- RAILS: (START) asdf/shims/gem install bundler --------------------\n'
