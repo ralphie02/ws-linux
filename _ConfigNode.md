@@ -8,7 +8,7 @@ tags: [node, node/conf]
 echo -e '-------------------- NODE: (START) Install via asdf --------------------\n'
 ~/.asdf/bin/asdf plugin add nodejs
 [ $(~/.asdf/bin/asdf list all nodejs | grep "$NODE_VER" | wc -l) == 1 ] && \
-  (~/.asdf/bin/asdf install nodejs $NODE_VER && ~/.asdf/bin/asdf global nodejs $NODE_VER) || \
+  ~/.asdf/bin/asdf install nodejs $NODE_VER && ~/.asdf/bin/asdf global nodejs $NODE_VER || \
   (~/.asdf/bin/asdf install nodejs latest && ~/.asdf/bin/asdf global nodejs latest)
 echo -e '-------------------- NODE: (END) Install via asdf --------------------\n'
 
