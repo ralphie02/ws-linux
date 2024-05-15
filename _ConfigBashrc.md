@@ -55,10 +55,8 @@ if [ ! -d $XDG_RUNTIME_DIR ]; then
   sudo chown $(id -un):$(id -gn) $XDG_RUNTIME_DIR
 fi
 ps aux | grep -q -e "[-]-address=$DBUS_SESSION_BUS_ADDRESS" || dbus-daemon --session --address=$DBUS_SESSION_BUS_ADDRESS --nofork --nopidfile --syslog-only >/dev/null 2>&1 & disown
-
 #----- END: RUNNING GUI APPS IN WSL -----#
 EOF
-
 # --------------- BASHRC END BLOCK --------------- #
 
 ${BLOCK_SCRIPT_PATH} ~/.bashrc "$BASHRC"
