@@ -25,6 +25,6 @@ read -rd '' ASDFRC << 'EOF'
 legacy_version_file = yes
 EOF
 # --------------- ASDFRC END BLOCK --------------- #
-${BLOCK_SCRIPT_PATH} ~/.asdfrc "$ASDFRC"
+${BLOCK_SCRIPT_PATH} ~/.asdfrc "$ASDFRC" '##------ BEGIN ASDFRC BLOCK' '##------ END ASDFRC BLOCK'
 echo -e '-------------------- ASDF: (END) Insert block to ~/.asdfrc --------------------\n'
 ```
