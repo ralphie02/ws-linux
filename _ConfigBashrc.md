@@ -60,6 +60,5 @@ EOF
 # --------------- BASHRC END BLOCK --------------- #
 
 ${BLOCK_SCRIPT_PATH} ~/.bashrc "$BASHRC"
-
 echo -e '-------------------- BASHRC: (END) Insert block to ~/.bashrc --------------------\n'
 ```
