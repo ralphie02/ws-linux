@@ -18,10 +18,10 @@ tags: [bash, sed]
 #   EOF
 #
 #   1. Without a dynamic script path
-#     /tmp/block_script.sh ~/.file/path "$VAR_NAME"
+#     /tmp/block_script.sh ~/.file/path "$VAR_NAME" '# BEGIN COMMENT LINE NEEDS' 'TO BE UNIQUE PER FILE'
 #
 #   2. With a dynamic script path
-#     ${BLOCK_SCRIPT_PATH} ~/.file/path "$VAR_NAME"
+#     ${BLOCK_SCRIPT_PATH} ~/.file/path "$VAR_NAME" '##------ BEGIN[<FILESOURCE>] CFG' '##------ END[<FILESOURCE>] CFG'
 #
 FILE=$1
 BLOCK_BODY=$2
