@@ -25,7 +25,7 @@ tags: [bash, sed]
 #     Version=1.2
 #     SecondValue=if_exists
 #     ##------ END[_ConfigBashrc]
-
+#
 #   2. With a dynamic script path
 #     ${BLOCK_SCRIPT_PATH} /path/_ConfigVimrc "$VAR_NAME" '""------ BEGIN[<FILESOURCE>] CFG' '""------ END[<FILESOURCE>] CFG'
 #
