@@ -16,7 +16,7 @@ read -rd '' BASHRC << 'EOF'
 . "$HOME/.asdf/completions/asdf.bash"
 EOF
 # --------------- BASHRC END BLOCK --------------- #
-${BLOCK_SCRIPT_PATH} ~/.bashrc "$BASHRC"
+${BLOCK_SCRIPT_PATH} ~/.bashrc "$BASHRC" '##------ BEGIN[ASDFRC] CFG' '##------ END[ASDFRC] CFG'
 echo -e '-------------------- ASDF: (END) Insert block to ~/.bashrc --------------------\n'
 
 echo -e '-------------------- ASDF: (START) Insert block to ~/.asdfrc --------------------\n'
@@ -25,6 +25,6 @@ read -rd '' ASDFRC << 'EOF'
 legacy_version_file = yes
 EOF
 # --------------- ASDFRC END BLOCK --------------- #
-${BLOCK_SCRIPT_PATH} ~/.asdfrc "$ASDFRC" '##------ BEGIN ASDFRC BLOCK' '##------ END ASDFRC BLOCK'
+${BLOCK_SCRIPT_PATH} ~/.asdfrc "$ASDFRC" '##------ BEGIN[ASDFRC] CFG' '##------ END[ASDFRC] CFG'
 echo -e '-------------------- ASDF: (END) Insert block to ~/.asdfrc --------------------\n'
 ```
