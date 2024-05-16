@@ -17,6 +17,6 @@ set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 EOF
 # --------------- VIMRC END BLOCK --------------- # 
 
-${BLOCK_SCRIPT_PATH} ~/.vimrc "$VIMRC" '""------ BEGIN BLOCK' '""------ END BLOCK'
+${BLOCK_SCRIPT_PATH} ~/.vimrc "$VIMRC" '""------ BEGIN[VIMRC] CFG' '""------ END[VIMRC] CFG'
 echo -e '-------------------- VIMRC: (END) Insert block to ~/.vimrc --------------------\n'
 ```
