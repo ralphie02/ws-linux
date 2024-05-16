@@ -18,15 +18,28 @@ tags: [bash, sed]
 #   EOF
 #
 #   1. Without a dynamic script path
-#     /tmp/block_script.sh ~/.file/path "$VAR_NAME" '# COMMENT LINE NEEDS' '# TO BE UNIQUE PER FILE'
+#     /tmp/block_script.sh /path/_ConfigBashrc "$VAR_NAME"
 #
+#     /path/_ConfigBashrc.md (generate default block comments):
+#     ##------ BEGIN[_ConfigBashrc]
+#     Version=1.2
+#     SecondValue=if_exists
+#     ##------ END[_ConfigBashrc]
+
 #   2. With a dynamic script path
-#     ${BLOCK_SCRIPT_PATH} ~/.file/path "$VAR_NAME" '##------ BEGIN[<FILESOURCE>] CFG' '##------ END[<FILESOURCE>] CFG'
+#     ${BLOCK_SCRIPT_PATH} /path/_ConfigVimrc "$VAR_NAME" '""------ BEGIN[<FILESOURCE>] CFG' '""------ END[<FILESOURCE>] CFG'
+#
+#     /path/_ConfigVimrc.md (override block comments; use vimrc comment instead of '#'):
+#     ""------ BEGIN[VIMRC] CFG
+#     Version=1.2
+#     SecondValue=if_exists
+#     ""------ END[VIMRC] CFG
 #
 FILE=$1
+FILENAME=$(basename $1 | cut -d. -f1)
 BLOCK_BODY=$2
-BLOCK_BEGIN=${3:-'##------ BEGIN BLOCK'}
-BLOCK_END=${4:-'##------ END BLOCK'}
+BLOCK_BEGIN=${3:-'##------ BEGIN[$FILENAME]'}
+BLOCK_END=${4:-'##------ END[$FILENAME]'}
 
 # https://stackoverflow.com/a/6287940 - used as ref | delete block between patterns
 # https://unix.stackexchange.com/a/303649 - replace block between patterns
