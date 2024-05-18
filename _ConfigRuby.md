@@ -49,7 +49,7 @@ AwesomePrint.irb! if defined?(AwesomePrint)
 EOF
 # --------------- IRBRC END BLOCK --------------- #
 
-${BLOCK_SCRIPT_PATH} ~/.irbrc "$IRBRC"
+$BLOCK_SCRIPT_PATH ~/.irbrc "$IRBRC" $CFG_BASENAME
 echo -e '-------------------- RUBY: (END) Insert block to ~/.irbrc --------------------\n'
 #}
 
