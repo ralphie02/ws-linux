@@ -27,7 +27,7 @@ tags: [bash, sed]
 #     ##------ END[_ConfigBashrc]
 #
 #   2. With a dynamic script path
-#     ${BLOCK_SCRIPT_PATH} /path/_ConfigVimrc "$VAR_NAME" '""------ BEGIN[<FILESOURCE>] CFG' '""------ END[<FILESOURCE>] CFG'
+#     ${BLOCK_SCRIPT_PATH} /path/_ConfigVimrc "$VAR_NAME" '""------ BEGIN: <FILESOURCE> CFG' '""------ END: <FILESOURCE> CFG'
 #
 #     /path/_ConfigVimrc.md (override block comments; use vimrc comment instead of '#'):
 #     ""------ BEGIN[VIMRC] CFG
@@ -38,8 +38,8 @@ tags: [bash, sed]
 FILE=$1
 FILENAME=${1##*/}
 BLOCK_BODY=$2
-BLOCK_BEGIN=${3:-"##------ BEGIN[$FILENAME]"}
-BLOCK_END=${4:-"##------ END[$FILENAME]"}
+BLOCK_BEGIN=${3:-"##------ BEGIN: $FILENAME"}
+BLOCK_END=${4:-"##------ END: $FILENAME"}
 
 # https://stackoverflow.com/a/6287940 - used as ref | delete block between patterns
 # https://unix.stackexchange.com/a/303649 - replace block between patterns
