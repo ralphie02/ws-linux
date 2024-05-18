@@ -8,38 +8,38 @@ tags: [bash, sed]
 # Inserts a BLOCK_BODY(string) into the specified FILE.
 # @example
 #   (block uses env vars, don't wrap EOF in ''):
-#   read -rd '' VAR_NAME << EOF
+#   read -rd '' CFG_BLOCK << EOF
 #   Version=$VERSION
 #   EOF
 #
 #   (block does not use vars, wrap EOF in ''):
-#   read -rd '' VAR_NAME << 'EOF'
+#   read -rd '' CFG_BLOCK << 'EOF'
 #   Version=1.2
 #   EOF
 #
 #   1. Without a dynamic script path
-#     /tmp/block_script.sh /path/_ConfigBashrc "$VAR_NAME"
+#     /tmp/block_script.sh /path/to/.configure "$CFG_BLOCK" ${CFG_BASENAME:-'BASHRC CFG'}
 #
-#     /path/_ConfigBashrc.md (generate default block comments):
+#     /path/to/.configure (generate default block comments):
 #     ##------ BEGIN[_ConfigBashrc]
 #     Version=1.2
 #     SecondValue=if_exists
 #     ##------ END[_ConfigBashrc]
 #
 #   2. With a dynamic script path
-#     ${BLOCK_SCRIPT_PATH} /path/_ConfigVimrc "$VAR_NAME" '""------ BEGIN: <FILESOURCE> CFG' '""------ END: <FILESOURCE> CFG'
+#     $BLOCK_SCRIPT_PATH /path/to/.configure "$CFG_BLOCK" ${CFG_BASENAME:-'BASHRC CFG'} '"'
 #
-#     /path/_ConfigVimrc.md (override block comments; use vimrc comment instead of '#'):
-#     ""------ BEGIN[VIMRC] CFG
+#     /path/to/.configure (override block comments; use vimrc comment instead of '#'):
+#     ""------ BEGIN: BASHRC CFG
 #     Version=1.2
 #     SecondValue=if_exists
-#     ""------ END[VIMRC] CFG
+#     ""------ END: BASHRC CFG
 #
 FILE=$1
-FILENAME=${1##*/}
 BLOCK_BODY=$2
-BLOCK_BEGIN=${3:-"##------ BEGIN: $FILENAME"}
-BLOCK_END=${4:-"##------ END: $FILENAME"}
+COMMENT_CHAR=${4:-#}
+BLOCK_BEGIN="$COMMENT_CHAR$COMMENT_CHAR------ BEGIN: $3"
+BLOCK_END="$COMMENT_CHAR$COMMENT_CHAR------ END: $3"
 
 # https://stackoverflow.com/a/6287940 - used as ref | delete block between patterns
 # https://unix.stackexchange.com/a/303649 - replace block between patterns
