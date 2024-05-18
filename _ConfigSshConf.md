@@ -14,6 +14,6 @@ Host *
 EOF
 # --------------- SSH_CFG END BLOCK --------------- #
 
-${BLOCK_SCRIPT_PATH} ~/.ssh/config "$SSH_CFG"
+$BLOCK_SCRIPT_PATH ~/.ssh/config "$SSH_CFG"
 echo -e '-------------------- SSH CONF: (END) --------------------\n'
 ```
