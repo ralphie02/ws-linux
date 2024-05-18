@@ -38,8 +38,8 @@ tags: [bash, sed]
 FILE=$1
 FILENAME=$(basename $1 | cut -d. -f1)
 BLOCK_BODY=$2
-BLOCK_BEGIN=${3:-'##------ BEGIN[$FILENAME]'}
-BLOCK_END=${4:-'##------ END[$FILENAME]'}
+BLOCK_BEGIN=${3:-"##------ BEGIN[$FILENAME]"}
+BLOCK_END=${4:-"##------ END[$FILENAME]"}
 
 # https://stackoverflow.com/a/6287940 - used as ref | delete block between patterns
 # https://unix.stackexchange.com/a/303649 - replace block between patterns
