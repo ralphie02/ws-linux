@@ -34,6 +34,6 @@ gpuSupport=false
 EOF
 # --------------- WSL_CONF END BLOCK --------------- #
 
-sudo ${BLOCK_SCRIPT_PATH} /etc/wsl.conf "$WSL_CONF"
+sudo $BLOCK_SCRIPT_PATH /etc/wsl.conf "$WSL_CONF" $CFG_BASENAME
 echo -e '-------------------- WSL CONF: (END) Insert block to /etc/wsl.conf --------------------\n'
 ```
