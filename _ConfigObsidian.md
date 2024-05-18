@@ -5,6 +5,12 @@ tags: bash, fzf, sed
 ```bash
 #!/bin/bash
 
+echo -e '-------------------- OBSIDIAN: (START) Git pull --------------------\n'
+git -C ~/obsidian pull || git clone git@github.com:ralphie02/obsidian.git ~/obsidian && \
+  git -C ~/obsidian submodule update --init &&
+  git -C ~/obsidian submodule foreach 'git checkout master'
+echo -e '-------------------- OBSIDIAN: (END) Git pull --------------------\n'
+
 echo -e '-------------------- OBSIDIAN: (START) Set env vars --------------------\n'
 FPATH=$(wget -qO- https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | grep browser_download_url | cut -d\" -f4 | grep 'arm64.tar.gz')
 VERSION=$(echo $FPATH | rev | cut -d\/ -f2 | rev | cut -c2-)
