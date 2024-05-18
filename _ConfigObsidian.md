@@ -38,6 +38,6 @@ StartupNotify=true
 EOF
 # --------------- obsidian.desktop END BLOCK --------------- #
 
-sudo ${BLOCK_SCRIPT_PATH} /usr/share/applications/obsidian.desktop "$OBSIDIAN_DESKTOP"
+sudo $BLOCK_SCRIPT_PATH /usr/share/applications/obsidian.desktop "$OBSIDIAN_DESKTOP" $CFG_BASENAME
 echo -e '-------------------- OBSIDIAN: (END) Insert block to obsidian.desktop --------------------\n'
 ```
