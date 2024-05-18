@@ -32,6 +32,6 @@ if ! pgrep -x "postgres" >/dev/null; then sudo service postgresql start;  fi
 EOF
 # --------------- PSQL_BASHRC END BLOCK --------------- #
 
-${BLOCK_SCRIPT_PATH} ~/.bashrc "$PSQL_BASHRC"
+$BLOCK_SCRIPT_PATH ~/.bashrc "$PSQL_BASHRC" $CFG_BASENAME
 echo -e '-------------------- PSQL: (END) Insert block to ~/.bashrc --------------------\n'
 ```
