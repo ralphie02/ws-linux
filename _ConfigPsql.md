@@ -16,9 +16,11 @@ sudo service postgresql start
 echo -e '-------------------- PSQL: (END) Service start --------------------\n'
 
 echo -e '-------------------- PSQL: (START) Update psql encoding --------------------\n'
-sudo -u postgres psql -c "update pg_database set encoding = pg_char_to_encoding('UTF8') where datname = 'postgres';"
-sudo -u postgres psql -c "update pg_database set encoding = pg_char_to_encoding('UTF8') where datname = 'template0';"
-sudo -u postgres psql -c "update pg_database set encoding = pg_char_to_encoding('UTF8') where datname = 'template1';"
+if cat /etc/*os-release | grep -q "ID=debian"; then
+  sudo -u postgres psql -c "update pg_database set encoding = pg_char_to_encoding('UTF8') where datname = 'postgres';"
+  sudo -u postgres psql -c "update pg_database set encoding = pg_char_to_encoding('UTF8') where datname = 'template0';"
+  sudo -u postgres psql -c "update pg_database set encoding = pg_char_to_encoding('UTF8') where datname = 'template1';"
+fi
 echo -e '-------------------- PSQL: (END) Update psql encoding --------------------\n'
 #sudo -u postgres createuser $USER -s
   #createdb -p 5432
