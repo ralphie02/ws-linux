@@ -36,7 +36,7 @@ tags: [bash, sed]
 #     ""------ END[VIMRC] CFG
 #
 FILE=$1
-FILENAME=$(basename $1 | cut -d. -f1)
+FILENAME=${1##*/}
 BLOCK_BODY=$2
 BLOCK_BEGIN=${3:-"##------ BEGIN[$FILENAME]"}
 BLOCK_END=${4:-"##------ END[$FILENAME]"}
