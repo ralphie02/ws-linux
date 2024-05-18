@@ -22,6 +22,6 @@ set bell-style none
 EOF
 # --------------- INPUTRC END BLOCK --------------- #
 
-${BLOCK_SCRIPT_PATH} ~/.inputrc "$INPUTRC"
+$BLOCK_SCRIPT_PATH ~/.inputrc "$INPUTRC" $CFG_BASENAME
 echo -e '-------------------- INPUTRC: (END) Insert block to ~/.inputrc --------------------\n'
 ```
