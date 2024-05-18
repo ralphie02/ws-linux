@@ -59,6 +59,6 @@ ps aux | grep -q -e "[-]-address=$DBUS_SESSION_BUS_ADDRESS" || dbus-daemon --ses
 EOF
 # --------------- BASHRC END BLOCK --------------- #
 
-${BLOCK_SCRIPT_PATH} ~/.bashrc "$BASHRC" $CFG_BASENAME
+$BLOCK_SCRIPT_PATH ~/.bashrc "$BASHRC" $CFG_BASENAME
 echo -e '-------------------- BASHRC: (END) Insert block to ~/.bashrc --------------------\n'
 ```
