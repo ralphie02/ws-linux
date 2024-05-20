@@ -5,9 +5,9 @@ tags: bash, fzf, sed
 ```bash
 #!/bin/bash
 
-echo -e '-------------------- NVIM: (START) Install fd & ripgre --------------------\n'
-sudo apt install  -y --no-install-recommends fd-find ripgrep
-echo -e '-------------------- NVIM: (END) Install fd & ripgre --------------------\n'
+echo -e '-------------------- NVIM: (START) Install fd|ripgrep|xclip --------------------\n'
+sudo apt install  -y --no-install-recommends fd-find ripgrep xclip
+echo -e '-------------------- NVIM: (END) Install fd|ripgrep|xclip --------------------\n'
 
 echo -e '-------------------- NVIM: (START) Download/Extract + LazyVimRah config --------------------\n'
 sudo rm -rf /tmp/nvim* \
