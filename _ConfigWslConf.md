@@ -28,6 +28,8 @@ generateHosts = false
 appendWindowsPath = false
 
 # https://github.com/microsoft/WSL/issues/7368
+# https://github.com/microsoft/WSL/issues/10667
+# https://github.com/microsoft/WSL/issues/9454
 [wsl2]
 guiApplications=false
 gpuSupport=false
