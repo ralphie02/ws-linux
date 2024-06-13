@@ -1,4 +1,8 @@
-- copypasta
+- Pre-Linux setup (Windows)
+    ```powershell
+    wsl --install
+    ```
+- Linux setup
     ```bash
     sudo apt update && sudo apt install -y --no-install-recommends wget ca-certificates \
         mlocate keychain rsync curl man-db net-tools software-properties-common telnet
