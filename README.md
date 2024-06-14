@@ -1,7 +1,10 @@
 - Pre-Linux setup (Windows)
-    ```powershell
-    wsl --install -d debian
-    ```
+    - navigate to `%userprofile%` then create `shared`
+    - copy old `.ssh` to `%userprofile%`
+    - 
+        ```powershell
+        wsl --install -d debian
+        ```
 - Linux setup
     ```bash
     sudo apt update && sudo apt install -y --no-install-recommends wget ca-certificates \
