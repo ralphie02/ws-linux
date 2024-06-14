@@ -34,6 +34,7 @@ elif [ $FILE_ARCH = arm64.tar.gz ]; then
 fi
 echo -e '-------------------- OBSIDIAN: (END) Download/Extract --------------------\n'
 
+if [ $FILE_ARCH = arm64.tar.gz ]; then
 echo -e '-------------------- OBSIDIAN: (START) Insert block to obsidian.desktop --------------------\n'
 # --------------- obsidian.desktop BEGIN BLOCK --------------- #
 read -rd '' OBSIDIAN_DESKTOP << EOF
@@ -51,4 +52,5 @@ EOF
 
 sudo $BLOCK_SCRIPT_PATH /usr/share/applications/obsidian.desktop "$OBSIDIAN_DESKTOP" $CFG_BASENAME
 echo -e '-------------------- OBSIDIAN: (END) Insert block to obsidian.desktop --------------------\n'
+fi
 ```
