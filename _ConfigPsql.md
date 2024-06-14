@@ -23,7 +23,7 @@ if cat /etc/*os-release | grep -q "ID=debian"; then
 fi
 echo -e '-------------------- PSQL: (END) Update psql encoding --------------------\n'
 #sudo -u postgres createuser $USER -s
-  #createdb -p 5432
+createdb -p 5432
 
 echo -e '-------------------- PSQL: (START) Insert block to ~/.bashrc --------------------\n'
 # --------------- PSQL_BASHRC BEGIN BLOCK --------------- #
