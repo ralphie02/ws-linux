@@ -11,6 +11,7 @@ echo -e '-------------------- NVIM: (END) Install fd|ripgrep|xclip -------------
 
 echo -e '-------------------- NVIM: (START) Lazygit env vars --------------------\n'
 [ $(dpkg --print-architecture) = amd64 ] && FILE_ARCH=x86_64 || FILE_ARCH=arm64
+NVIM_FPATH=$(wget -qO- https://api.github.com/repos/neovim/neovim/releases/latest | grep browser_download_url | cut -d\" -f4 | grep linux64 | grep -v sha256)
 LAZY_FPATH=$(wget -qO- https://api.github.com/repos/jesseduffield/lazygit/releases/latest | grep browser_download_url | cut -d\" -f4 | grep $FILE_ARCH | grep Linux)
 # VERSION=$(echo $LAZY_FPATH | rev | cut -d\/ -f2 | rev | cut -c2-)
 # TAR_FILE=$(echo $LAZY_FPATH | rev | cut -d\/ -f1 | rev)
@@ -18,18 +19,19 @@ LAZY_FPATH=$(wget -qO- https://api.github.com/repos/jesseduffield/lazygit/releas
 echo -e '-------------------- NVIM: (END) Lazygit env vars --------------------\n'
 
 echo -e '-------------------- NVIM: (START) Download/Extract + LazyVimRah config --------------------\n'
+sudo rm -rf /tmp/nvim* && \
+  mkdir -p /tmp/nvim
 if [ $FILE_ARCH = x86_64 ]; then
-  sudo apt install  -y --no-install-recommends neovim
+  wget -O /tmp/nvim.tar.gz $NVIM_FPATH
 elif [ $FILE_ARCH = arm64 ]; then
-  sudo rm -rf /tmp/nvim* && \
-    mkdir -p /tmp/nvim && \
-    wget -P /tmp https://github.com/ralphie02/nvim-build/releases/latest/download/nvim.tar.gz && \
-    tar xvf /tmp/nvim.tar.gz -C /tmp/nvim && \
-    sudo mkdir -p /opt/bin && \
-    sudo rm -rf /opt/nvim && \
-    sudo mv /tmp/nvim/** /opt/nvim && \
-    sudo ln -sf /opt/nvim/bin/nvim /opt/bin/nvim
+  wget -P /tmp https://github.com/ralphie02/nvim-build/releases/latest/download/nvim.tar.gz
 fi
+tar -xvf /tmp/nvim.tar.gz -C /tmp/nvim && \
+  sudo mkdir -p /opt/bin && \
+  sudo rm -rf /opt/nvim && \
+  sudo mv /tmp/nvim/** /opt/nvim && \
+  sudo ln -sf /opt/nvim/bin/nvim /opt/bin/nvim
+
 git -C ~/.config/nvim pull || git clone git@github.com:ralphie02/LazyVimRah.git ~/.config/nvim
 echo -e '-------------------- NVIM: (END) Download/Extract + LazyVimRah config --------------------\n'
 
