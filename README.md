@@ -1,6 +1,6 @@
 - Pre-Linux setup (Windows)
     ```powershell
-    wsl --install
+    wsl --install -d debian
     ```
 - Linux setup
     ```bash
