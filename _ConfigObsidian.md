@@ -23,8 +23,10 @@ echo -e '-------------------- OBSIDIAN: (START) Download/Extract ---------------
 if [ $FILE_ARCH = amd64.deb ]; then
   wget -O /tmp/obsidian.deb $FPATH && sudo dpkg -i /tmp/obsidian.deb
 elif [ $FILE_ARCH = arm64.tar.gz ]; then
-  sudo rm -rf /tmp/obsidian* && mkdir -p /tmp/obsidian
-  wget -O /tmp/obsidian.tar.gz $FPATH && tar -xvf /tmp/obsidian.tar.gz -C /tmp/obsidian
+  sudo rm -rf /tmp/obsidian* && \
+    mkdir -p /tmp/obsidian
+  wget -O /tmp/obsidian.tar.gz $FPATH && \
+    tar -xvf /tmp/obsidian.tar.gz -C /tmp/obsidian
   sudo mkdir -p /opt/bin && \
     sudo rm -rf /opt/obsidian && \
     sudo mv /tmp/obsidian/** /opt/obsidian && \
