@@ -43,6 +43,7 @@ export LESS="$LESS -R -Q" # disable beep in LESS for Linux on Win10
 # no longer needed in Win11
 # export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
 export TERM=xterm-256color
+# https://stackoverflow.com/a/43147778
 export LS_COLORS=$LS_COLORS:'ow=1;34:'
 
 #---- START: RUNNING GUI APPS IN WSL ----#
