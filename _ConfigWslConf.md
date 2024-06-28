@@ -38,6 +38,7 @@ gpuSupport = false
 # https://learn.microsoft.com/en-us/windows/wsl/wsl-config#experimental-settings
 [experimental]
 autoMemoryReclaim = gradual
+sparseVhd = true
 EOF
 # --------------- WSL_CONF END BLOCK --------------- #
 
