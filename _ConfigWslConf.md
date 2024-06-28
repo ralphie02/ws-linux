@@ -31,8 +31,13 @@ appendWindowsPath = false
 # https://github.com/microsoft/WSL/issues/10667
 # https://github.com/microsoft/WSL/issues/9454
 [wsl2]
-guiApplications=false
-gpuSupport=false
+guiApplications = false
+gpuSupport = false
+
+# https://docs.docker.com/desktop/wsl/#prerequisites - tip
+# https://learn.microsoft.com/en-us/windows/wsl/wsl-config#experimental-settings
+[experimental]
+autoMemoryReclaim = gradual
 EOF
 # --------------- WSL_CONF END BLOCK --------------- #
 
