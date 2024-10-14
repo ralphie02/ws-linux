@@ -22,8 +22,13 @@ if cat /etc/*os-release | grep -q "ID=debian"; then
   sudo -u postgres psql -c "update pg_database set encoding = pg_char_to_encoding('UTF8') where datname = 'template1';"
 fi
 echo -e '-------------------- PSQL: (END) Update psql encoding --------------------\n'
-#sudo -u postgres createuser $USER -s
-createdb -p 5432
+
+# Create the PostgreSQL user with superuser privileges
+# (commented out for now) # sudo -u postgres createuser $USER -s
+
+# # Optional: Set a password for the new user
+# (not run; added for info) sudo -u postgres psql -c "ALTER USER $USERNAME WITH PASSWORD 'your_password';"
+# (commented out for now) createdb -p 5432
 
 echo -e '-------------------- PSQL: (START) Insert block to ~/.bashrc --------------------\n'
 # --------------- PSQL_BASHRC BEGIN BLOCK --------------- #
