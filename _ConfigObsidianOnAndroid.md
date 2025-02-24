@@ -6,6 +6,10 @@ tags: [android, obsidian, script, linux]
 #!/bin/bash
   
 pkg install -y openssh git cronie
+# Configure git
+git config --global --add safe.directory '*'
+git config --global user.name "Ralph - Android"
+git config --global user.email ralphie02@live.com
 # Configure storage (~/storage)
 [ ! -d $HOME/storage ] && termux-setup-storage
 # Configure ssh key & config file
