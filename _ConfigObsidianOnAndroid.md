@@ -59,12 +59,12 @@ git push origin $(git rev-parse --abbrev-ref HEAD)
 git submodule foreach --recursive git push origin $(git rev-parse --abbrev-ref HEAD)
 EOF
 
-echo $SYNC_OBSIDIAN > $HOME/crons/sync-obsidian.sh
+echo -e $SYNC_OBSIDIAN > $HOME/crons/sync-obsidian.sh
 chmod +x $HOME/crons/sync-obsidian.sh
 # -- GIT -- #
 
 # Add obsidian synching into cron
-crontab -l | grep sync-obsidian &&
+crontab -l | grep sync-obsidian ||
   (crontab -l; echo "*/30 * * * * $HOME/crons/sync-obsidian.sh") | crontab -
 
 # Nothing will work unless my ssh key has access to ralphie02/obsidian.
