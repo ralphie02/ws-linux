@@ -67,6 +67,19 @@ echo -e "$SYNC_OBSIDIAN" > $HOME/crons/sync-obsidian.sh
 chmod +x $HOME/crons/sync-obsidian.sh
 # -- GIT -- #
 
+read -rd '' INPUTRC << EOF
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+set menu-complete-display-prefix on
+set completion-ignore-case on
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+EOF
+
+echo -e "$INPUTRC" > $HOME/.inputrc
+
 # Add obsidian synching into cron
 crontab -l | grep sync-obsidian ||
   (crontab -l; echo "*/30 * * * * $HOME/crons/sync-obsidian.sh") | crontab -
