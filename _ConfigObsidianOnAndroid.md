@@ -9,7 +9,7 @@ pkg install -y openssh git cronie
 # Configure storage (~/storage)
 [ ! -d $HOME/storage ] && termux-setup-storage
 # Configure ssh key & config file
-[ ! -f $HOME/.ssh/id_rsa] &&
+[ ! -f $HOME/.ssh/id_rsa ] &&
   ssh-keygen -t rsa -C $(/system/bin/getprop ro.product.model | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g') -f $HOME/.ssh/id_rsa -N ''
 [ ! -f $HOME/.ssh/config ] && echo -e "Host github.com\n  StrictHostKeyChecking no" > $HOME/.ssh/config
 # Generate obsidian dir
