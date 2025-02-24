@@ -92,7 +92,7 @@ NO_COLOR="\033[0m"
 SSH_PUB=$(cat $HOME/.ssh/id_rsa.pub)
 echo -e "$GREEN\n$SSH_PUB"
 echo -e $YELLOW"\nAdd the ssh pub key above into github and then run the commands below:"
-echo $NO_COLOR
+echo -e $NO_COLOR
 cat << EOF
 cd $HOME/storage/shared/Documents/repos
 git clone git@github.com:ralphie02/obsidian.git 
