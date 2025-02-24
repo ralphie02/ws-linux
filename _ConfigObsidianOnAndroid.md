@@ -38,17 +38,17 @@ cd $HOME/storage/shared/Documents/repos/obsidian # or /storage/emulated/0/Docume
     
 # Step 1: Run git pull and handle conflicts for the main repository
 git fetch --all
-if ! git pull origin $(git rev-parse --abbrev-ref HEAD); then
+if ! git pull origin \$(git rev-parse --abbrev-ref HEAD); then
     echo "Conflict detected in the main repository. Discarding local changes."
-    git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
+    git reset --hard origin/\$(git rev-parse --abbrev-ref HEAD)
 fi
 
 # Step 2: Update submodules and handle conflicts separately
 git submodule update --init --recursive
 git submodule foreach --recursive '
-    if ! git pull origin $(git rev-parse --abbrev-ref HEAD); then
+    if ! git pull origin \$(git rev-parse --abbrev-ref HEAD); then
         echo "Conflict detected in submodule $name. Discarding local changes."
-        git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
+        git reset --hard origin/\$(git rev-parse --abbrev-ref HEAD)
     fi
 '
 
@@ -57,10 +57,10 @@ git add .
 git commit -m "Committing changes after pull"
 
 # Step 4: Push changes in the main repository
-git push origin $(git rev-parse --abbrev-ref HEAD)
+git push origin \$(git rev-parse --abbrev-ref HEAD)
 
 # Step 5: Push changes in submodules
-git submodule foreach --recursive git push origin $(git rev-parse --abbrev-ref HEAD)
+git submodule foreach --recursive git push origin \$(git rev-parse --abbrev-ref HEAD)
 EOF
 
 echo -e "$SYNC_OBSIDIAN" > $HOME/crons/sync-obsidian.sh
