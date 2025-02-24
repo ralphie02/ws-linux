@@ -59,7 +59,7 @@ git push origin $(git rev-parse --abbrev-ref HEAD)
 git submodule foreach --recursive git push origin $(git rev-parse --abbrev-ref HEAD)
 EOF
 
-echo -e $SYNC_OBSIDIAN > $HOME/crons/sync-obsidian.sh
+echo -e "$SYNC_OBSIDIAN" > $HOME/crons/sync-obsidian.sh
 chmod +x $HOME/crons/sync-obsidian.sh
 # -- GIT -- #
 
