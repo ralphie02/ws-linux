@@ -1,5 +1,5 @@
 ---
-tags: android, obsidian, script, linux
+tags: [android, obsidian, script, linux]
 ---
 
 ```bash
