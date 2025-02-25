@@ -61,6 +61,8 @@ git push origin \$(git rev-parse --abbrev-ref HEAD)
 
 # Step 5: Push changes in submodules
 git submodule foreach --recursive git push origin \$(git rev-parse --abbrev-ref HEAD)
+
+date
 EOF
 
 echo -e "$SYNC_OBSIDIAN" > $HOME/crons/sync-obsidian.sh
