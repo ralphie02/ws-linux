@@ -93,12 +93,12 @@ YELLOW="\033[0;33m"
 NO_COLOR="\033[0m"
 SSH_PUB=$(cat $HOME/.ssh/id_rsa.pub)
 echo -e "$GREEN\n$SSH_PUB"
-echo -e $YELLOW"\nAdd the ssh pub key above into github and then run the commands below:"
-echo -e $NO_COLOR
+echo -e $YELLOW"\nAdd the ssh pub key above into github and then run the commands below:"$NO_COLOR
 cat << EOF
 cd $HOME/storage/shared/Documents/repos
 git clone git@github.com:ralphie02/obsidian.git 
 git submodule update --init
 git submodule foreach 'git checkout master'
 EOF
+echo -e $YELLOW"\nOnce complete, reboot phone and run 'pidof crond' to ensure crond is running"$NO_COLOR
 ```
