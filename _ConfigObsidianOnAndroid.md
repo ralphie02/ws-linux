@@ -62,9 +62,11 @@ git submodule foreach --recursive git push origin \$(git rev-parse --abbrev-ref 
 date
 EOF
 
-mkdir -p $HOME/scripts
+mkdir -p $HOME/scripts $HOME/logs
 echo -e "$SYNC_OBSIDIAN" > $HOME/scripts/sync-obsidian.sh
 chmod +x $HOME/scripts/sync-obsidian.sh
+crontab -l | grep sync-obsidian ||
+  (crontab -l; echo "*/30 * * * * $HOME/scripts/sync-obsidian.sh > $HOME/logs/sync-obsidian-log") | crontab -
 # -- GIT -- #
 
 read -rd '' INPUTRC << EOF
@@ -81,8 +83,6 @@ EOF
 echo -e "$INPUTRC" > $HOME/.inputrc
 
 # Add obsidian synching into cron
-crontab -l | grep sync-obsidian ||
-  (crontab -l; echo "*/30 * * * * $HOME/crons/sync-obsidian.sh > $HOME/crons/sync-obsidian-log") | crontab -
 
 # Nothing will work unless my ssh key has access to ralphie02/obsidian.
 # SSH key needs to be added to github
