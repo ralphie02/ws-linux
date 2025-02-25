@@ -100,5 +100,5 @@ git clone git@github.com:ralphie02/obsidian.git
 git submodule update --init
 git submodule foreach 'git checkout master'
 EOF
-echo -e $YELLOW"\nOnce complete, reboot phone and run 'pidof crond' to ensure crond is running"$NO_COLOR
+echo -e $YELLOW"\nOnce complete, reboot phone and run 'pidof crond' to ensure crond is running.\n"$NO_COLOR
 ```
