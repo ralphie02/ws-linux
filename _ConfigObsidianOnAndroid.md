@@ -25,13 +25,10 @@ mkdir -p $HOME/.termux/boot
   echo -e "#!/data/data/com.termux/files/usr/bin/sh\ntermux-wake-lock\ncrond" > $HOME/.termux/boot/start-crond && 
   chmod +x $HOME/.termux/boot/start-crond
 
-mkdir -p $HOME/crons
-chmod 700 -R $HOME/crons
-
 # -- GIT -- #
 # Configure git script to sync repo + submodules
 read -rd '' SYNC_OBSIDIAN << EOF
-#!/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 
 # Step 0: Change dir
 cd $HOME/storage/shared/Documents/repos/obsidian # or /storage/emulated/0/Documents/repos/obsidian
@@ -65,8 +62,9 @@ git submodule foreach --recursive git push origin \$(git rev-parse --abbrev-ref 
 date
 EOF
 
-echo -e "$SYNC_OBSIDIAN" > $HOME/crons/sync-obsidian.sh
-chmod +x $HOME/crons/sync-obsidian.sh
+mkdir -p $HOME/scripts
+echo -e "$SYNC_OBSIDIAN" > $HOME/scripts/sync-obsidian.sh
+chmod +x $HOME/scripts/sync-obsidian.sh
 # -- GIT -- #
 
 read -rd '' INPUTRC << EOF
