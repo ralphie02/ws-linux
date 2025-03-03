@@ -110,6 +110,7 @@ echo -e $YELLOW"\nAdd the ssh pub key above into github and then run the command
 cat << EOF
 cd $HOME/storage/shared/Documents/repos
 git clone git@github.com:ralphie02/obsidian.git 
+cd obsidian
 git submodule update --init
 git submodule foreach 'git checkout master'
 EOF
