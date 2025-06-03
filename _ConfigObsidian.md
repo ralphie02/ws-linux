@@ -11,6 +11,12 @@ git -C ~/obsidian pull || git clone git@github.com:ralphie02/obsidian.git ~/obsi
   git -C ~/obsidian submodule foreach 'git checkout master'
 echo -e '-------------------- OBSIDIAN: (END) Git pull --------------------\n'
 
+# seems like xvfb is needed for electron apps (such as obsidian...)
+# see https://gist.github.com/caseywatts/9700b402b6b51d1d6af9f0b206739770?permalink_comment_id=4695214#gistcomment-4695214
+echo -e '-------------------- OBSIDIAN: (START) Install Electron dependencies --------------------\n'
+sudo apt install -y xvfb
+echo -e '-------------------- OBSIDIAN: (END)  Install Electron dependencies --------------------\n'
+
 echo -e '-------------------- OBSIDIAN: (START) Set env vars --------------------\n'
 [ $(dpkg --print-architecture) = amd64 ] && FILE_ARCH=amd64.deb || FILE_ARCH=arm64.tar.gz
 FPATH=$(wget -qO- https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | grep browser_download_url | cut -d\" -f4 | grep $FILE_ARCH)
