@@ -44,31 +44,44 @@ read -rd '' SYNC_OBSIDIAN << EOF
 # Step 0: Change dir
 cd $HOME/storage/shared/Documents/repos/obsidian # or /storage/emulated/0/Documents/repos/obsidian
     
-# Step 1: Run git pull and handle conflicts for the main repository
-git fetch --all
-if ! git pull origin \$(git rev-parse --abbrev-ref HEAD); then
-    echo "Conflict detected in the main repository. Discarding local changes."
-    git reset --hard origin/\$(git rev-parse --abbrev-ref HEAD)
-fi
+# Detect current branch
+branch=$(git rev-parse --abbrev-ref HEAD)
 
-# Step 2: Update submodules and handle conflicts separately
+# Step 1: Submodules
 git submodule update --init --recursive
 git submodule foreach --recursive '
-    if ! git pull origin \$(git rev-parse --abbrev-ref HEAD); then
-        echo "Conflict detected in submodule $name. Discarding local changes."
-        git reset --hard origin/\$(git rev-parse --abbrev-ref HEAD)
+    branch=$(git rev-parse --abbrev-ref HEAD)
+    git fetch origin $branch
+    if ! git merge --ff-only origin/$branch; then
+        echo "Conflict in submodule $name. Resetting."
+        git reset --hard origin/$branch
     fi
 '
 
-# Step 3: Add and commit changes in the main repository
+# Step 2: Fetch and safely update main repo
+branch=$(git rev-parse --abbrev-ref HEAD)
+git fetch origin "$branch"
+if ! git merge --ff-only origin/"$branch"; then
+    echo "Conflict in main repo. Discarding local changes."
+    git reset --hard origin/"$branch"
+fi
+
+# Step 3: Sanity check for corruption
+if ! git fsck --no-reflogs --full; then
+    echo "Warning: repository may be corrupted."
+    exit 1
+fi
+
+# Step 4: Push submodules
+git submodule foreach --recursive '
+    branch=$(git rev-parse --abbrev-ref HEAD)
+    git push origin $branch
+'
+
+# Step 5: Commit and push
 git add .
-git commit -m "Committing changes after pull"
-
-# Step 4: Push changes in the main repository
-git push origin \$(git rev-parse --abbrev-ref HEAD)
-
-# Step 5: Push changes in submodules
-git submodule foreach --recursive git push origin \$(git rev-parse --abbrev-ref HEAD)
+git commit -m "Committing changes after pull" || echo "Nothing to commit."
+git push origin "$branch"
 
 date
 EOF
