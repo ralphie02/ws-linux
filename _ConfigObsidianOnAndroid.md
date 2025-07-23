@@ -42,46 +42,81 @@ read -rd '' SYNC_OBSIDIAN << EOF
 #!/data/data/com.termux/files/usr/bin/bash
 
 # Step 0: Change dir
+echo "🔄 Step 0: Change the working dir"
 cd $HOME/storage/shared/Documents/repos/obsidian # or /storage/emulated/0/Documents/repos/obsidian
     
-# Detect current branch
+# Step 0.1: Get current branch
 branch=$(git rev-parse --abbrev-ref HEAD)
 
-# Step 1: Submodules
+echo "🔄 Step 1: Ensure submodules are initialized and pointing to proper branches"
 git submodule update --init --recursive
+
+# Step 1.1: Check for uncommitted changes in submodules before resets
+echo "🔍 Checking for uncommitted changes in submodules..."
 git submodule foreach --recursive '
-    branch=$(git rev-parse --abbrev-ref HEAD)
-    git fetch origin $branch
-    if ! git merge --ff-only origin/$branch; then
-        echo "Conflict in submodule $name. Resetting."
-        git reset --hard origin/$branch
+    if ! git diff --quiet || ! git diff --cached --quiet; then
+        echo "⚠️  Warning: Uncommitted changes in submodule $name"
     fi
 '
 
-# Step 2: Fetch and safely update main repo
-branch=$(git rev-parse --abbrev-ref HEAD)
+# Step 1.2: Sync, checkout branch, and pull latest submodule content
+git submodule foreach --recursive '
+    echo "📦 Handling submodule: $name"
+
+    # Detect default branch name (could be main or master)
+    default_branch=$(git remote show origin | sed -n "/HEAD branch/s/.*: //p")
+
+    # If in detached HEAD, switch to the right branch
+    current_branch=$(git rev-parse --abbrev-ref HEAD)
+    if [ "$current_branch" = "HEAD" ]; then
+        echo "⛑️  $name is in detached HEAD — checking out $default_branch"
+        git checkout -B "$default_branch" "origin/$default_branch"
+    fi
+
+    b=$(git rev-parse --abbrev-ref HEAD)
+    git fetch origin $b
+    if ! git merge --ff-only origin/$b; then
+        echo "⚠️  Conflict in submodule $name. Resetting to remote."
+        git reset --hard origin/$b
+    fi
+'
+
+echo "⬇️ Step 2: Pull latest changes in main repo"
 git fetch origin "$branch"
 if ! git merge --ff-only origin/"$branch"; then
-    echo "Conflict in main repo. Discarding local changes."
+    echo "⚠️  Conflict in main repo. Resetting to remote."
     git reset --hard origin/"$branch"
 fi
 
-# Step 3: Sanity check for corruption
+echo "🔍 Step 3: Git FSCK check (integrity check)"
 if ! git fsck --no-reflogs --full; then
-    echo "Warning: repository may be corrupted."
+    echo "❌ Repository is corrupt. Aborting."
     exit 1
 fi
 
-# Step 4: Push submodules
+echo "💾 Step 4: Commit and push submodules first"
 git submodule foreach --recursive '
-    branch=$(git rev-parse --abbrev-ref HEAD)
-    git push origin $branch
+    b=$(git rev-parse --abbrev-ref HEAD)
+
+    if ! git diff --quiet || ! git diff --cached --quiet; then
+        echo "💡 Changes detected in $name. Committing..."
+        git add .
+        git commit -m "Update in submodule $name" || echo "✅ No changes in submodule $name"
+    fi
+
+    echo "📤 Pushing submodule $name"
+    git push origin $b
 '
 
-# Step 5: Commit and push
+echo "🧩 Step 5: Commit submodule SHA updates in main repo"
+
 git add .
-git commit -m "Committing changes after pull" || echo "Nothing to commit."
+git commit -m "Update submodule SHA changes" || echo "✅ No submodule SHA changes"
+
+echo "📤 Step 6: Push main repo"
 git push origin "$branch"
+
+echo "✅ Done! Submodules and main repo are synced and pushed."
 
 date
 EOF
