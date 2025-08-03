@@ -1,10 +1,11 @@
 - Pre-Linux setup (Windows)
-    - (to be removed) navigate to `%userprofile%` then create `shared`
-    - (to be removed) copy old `.ssh` to `%userprofile%`
-    - 
+    - navigate to `%userprofile%` then create `shared`
+    - copy old `.ssh` to `%userprofile%`
+    - install wsl2 with distro
         ```powershell
         wsl --install -d debian
         ```
+    - reboot
 - Linux setup
     ```bash
     sudo apt update && sudo apt install -y --no-install-recommends wget ca-certificates \

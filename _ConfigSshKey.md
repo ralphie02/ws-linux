@@ -16,7 +16,7 @@ echo -e '-------------------- SSH KEY: (START) Gen/copy --------------------\n'
 if grep -qi microsoft /proc/version; then 
   SHARED_DIRNAME=shared
   WIN_USER=$(/mnt/c/windows/system32/cmd.exe /c 'echo %username%' | sed -e 's/\r//g')
-  if [ ! -L "$SHARED_DIRNAME" ]; then ln -s /mnt/c/Users/$WIN_USER/shared ~/; fi
+  if [ ! -L "~/$SHARED_DIRNAME" ]; then ln -s /mnt/c/Users/$WIN_USER/$SHARED_DIRNAME ~/; fi
     
   NEW_SSH_KEY=true
   if [ ! -f ~/.ssh/id_rsa -a -f /mnt/c/Users/$WIN_USER/.ssh/id_rsa ]; then

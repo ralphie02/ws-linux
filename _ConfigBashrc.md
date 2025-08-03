@@ -36,8 +36,8 @@ git_changed() {
 }
 PS1='\[\e[96m\]\w\[\e[94m\]$(git_l_bracket)\[\e[91m\]$(parse_git_branch)\[\e[94m\]$(git_r_bracket)\[\e[93m\]$(git_changed) \[\e[00m\]'
 
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 export LESS="$LESS -R -Q" # disable beep in LESS for Linux on Win10
 # no longer needed in Win11
 # export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
@@ -45,18 +45,18 @@ export TERM=xterm-256color
 # https://stackoverflow.com/a/43147778
 export LS_COLORS=$LS_COLORS:'ow=1;34:'
 
-#---- START: RUNNING GUI APPS IN WSL ----#
-# https://github.com/microsoft/WSL/issues/7915#issuecomment-1163333151
-
-export XDG_RUNTIME_DIR=/run/user/$(id -u)
-export DBUS_SESSION_BUS_ADDRESS=unix:path=$XDG_RUNTIME_DIR/bus
-if [ ! -d $XDG_RUNTIME_DIR ]; then
-  sudo mkdir -p $XDG_RUNTIME_DIR
-  sudo chmod 700 $XDG_RUNTIME_DIR
-  sudo chown $(id -un):$(id -gn) $XDG_RUNTIME_DIR
-fi
-ps aux | grep -q -e "[-]-address=$DBUS_SESSION_BUS_ADDRESS" || dbus-daemon --session --address=$DBUS_SESSION_BUS_ADDRESS --nofork --nopidfile --syslog-only >/dev/null 2>&1 & disown
-#----- END: RUNNING GUI APPS IN WSL -----#
+# #---- START: RUNNING GUI APPS IN WSL ----#
+# # https://github.com/microsoft/WSL/issues/7915#issuecomment-1163333151
+# 
+# export XDG_RUNTIME_DIR=/run/user/$(id -u)
+# export DBUS_SESSION_BUS_ADDRESS=unix:path=$XDG_RUNTIME_DIR/bus
+# if [ ! -d $XDG_RUNTIME_DIR ]; then
+#   sudo mkdir -p $XDG_RUNTIME_DIR
+#   sudo chmod 700 $XDG_RUNTIME_DIR
+#   sudo chown $(id -un):$(id -gn) $XDG_RUNTIME_DIR
+# fi
+# ps aux | grep -q -e "[-]-address=$DBUS_SESSION_BUS_ADDRESS" || dbus-daemon --session --address=$DBUS_SESSION_BUS_ADDRESS --nofork --nopidfile --syslog-only >/dev/null 2>&1 & disown
+# #----- END: RUNNING GUI APPS IN WSL -----#
 EOF
 # --------------- BASHRC END BLOCK --------------- #
 
