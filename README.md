@@ -1,6 +1,6 @@
 - Pre-Linux setup (Windows)
-    - navigate to `%userprofile%` then create `shared`
-    - copy old `.ssh` to `%userprofile%`
+    - (to be removed) navigate to `%userprofile%` then create `shared`
+    - (to be removed) copy old `.ssh` to `%userprofile%`
     - 
         ```powershell
         wsl --install -d debian

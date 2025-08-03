@@ -1,7 +1,6 @@
 ---
 tags: [psql, psql/conf]
 ---
-
 ```bash
 #!/bin/bash
 

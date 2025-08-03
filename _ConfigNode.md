@@ -1,7 +1,6 @@
 ---
 tags: [node, node/conf]
 ---
-
 ```bash
 #!/bin/bash
 

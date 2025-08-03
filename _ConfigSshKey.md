@@ -1,7 +1,6 @@
 ---
 tags: [ssh, ssh/conf]
 ---
-
 ```bash
 # Seems like this has to be on a separate file. 
 # Lines after the if block don't run and I can't figure it out...

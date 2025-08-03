@@ -1,7 +1,6 @@
 ---
 tags: [android, obsidian, script, linux]
 ---
-
 ```bash
 #!/bin/bash
   

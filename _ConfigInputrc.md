@@ -1,7 +1,6 @@
 ---
 tags: [inputrc]
 ---
-
 ```bash
 #!/bin/bash
 
