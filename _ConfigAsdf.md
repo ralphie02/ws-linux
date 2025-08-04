@@ -20,15 +20,14 @@ sudo rm -rf /usr/local/asdf && \
   sudo ln -sf /usr/local/asdf/asdf /usr/local/bin/asdf
 echo -e '-------------------- ASDF: (END) Download/extract --------------------\n'
 
-#echo -e '-------------------- ASDF: (START) Insert block to ~/.bashrc --------------------\n'
-## --------------- BASHRC BEGIN BLOCK --------------- #
-#read -rd '' BASHRC << 'EOF'
-#. "$HOME/.asdf/asdf.sh"
-#. "$HOME/.asdf/completions/asdf.bash"
-#EOF
-## --------------- BASHRC END BLOCK --------------- #
-#$BLOCK_SCRIPT_PATH ~/.bashrc "$BASHRC" $CFG_BASENAME
-#echo -e '-------------------- ASDF: (END) Insert block to ~/.bashrc --------------------\n'
+echo -e '-------------------- ASDF: (START) Insert block to ~/.bashrc --------------------\n'
+# --------------- BASHRC BEGIN BLOCK --------------- #
+read -rd '' BASHRC << 'EOF'
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+EOF
+# --------------- BASHRC END BLOCK --------------- #
+$BLOCK_SCRIPT_PATH ~/.bashrc "$BASHRC" $CFG_BASENAME
+echo -e '-------------------- ASDF: (END) Insert block to ~/.bashrc --------------------\n'
 
 echo -e '-------------------- ASDF: (START) Insert block to ~/.asdfrc --------------------\n'
 # --------------- ASDFRC BEGIN BLOCK --------------- #
