@@ -6,18 +6,22 @@ tags: bash, fzf, sed
 
 echo -e '-------------------- ASDF: (START) Set env vars --------------------\n'
 [ $(dpkg --print-architecture) = amd64 ] && FILE_ARCH=x86_64 || FILE_ARCH=arm64
-ASDF_PATH=$(wget -qO- https://api.github.com/repos/asdf-vm/asdf/releases/latest | grep browser_download_url | cut -d\" -f4 | grep linux | grep -e $FILE_ARCH.tar.gz$)
+ASDF_URL=$(wget -qO- https://api.github.com/repos/asdf-vm/asdf/releases/latest | grep browser_download_url | cut -d\" -f4 | grep linux | grep -e $FILE_ARCH.tar.gz$)
+ASDF_VER=$(echo $ASDF_URL | cut -d\/ -f8)
 echo -e '-------------------- ASDF: (END) Set env vars --------------------\n'
 
 echo -e '-------------------- ASDF: (START) Download/extract --------------------\n'
-##git -C ~/.asdf pull || git clone https://github.com/asdf-vm/asdf.git ~/.asdf
-sudo rm -rf /tmp/asdf* && \
-  mkdir -p /tmp/asdf
-wget -O /tmp/asdf.tar.gz $ASDF_PATH
-tar -xvf /tmp/asdf.tar.gz -C /tmp/asdf
-sudo rm -rf /usr/local/asdf && \
-  sudo mv /tmp/asdf /usr/local/asdf && \
-  sudo ln -sf /usr/local/asdf/asdf /usr/local/bin/asdf
+if [ $(asdf -v 2>/dev/null | cut -d' ' -f3) = $ASDF_VER ]; then
+  echo -e 
+else
+  sudo rm -rf /tmp/asdf* && \
+    mkdir -p /tmp/asdf
+  wget -O /tmp/asdf.tar.gz $ASDF_URL
+  tar -xvf /tmp/asdf.tar.gz -C /tmp/asdf
+  sudo rm -rf /usr/local/asdf && \
+    sudo mv /tmp/asdf /usr/local/asdf && \
+    sudo ln -sf /usr/local/asdf/asdf /usr/local/bin/asdf
+fi
 echo -e '-------------------- ASDF: (END) Download/extract --------------------\n'
 
 echo -e '-------------------- ASDF: (START) Insert block to ~/.bashrc --------------------\n'
