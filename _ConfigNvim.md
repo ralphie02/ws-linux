@@ -26,7 +26,7 @@ wget -O /tmp/nvim.tar.gz $NVIM_FPATH
 # elif [ $FILE_ARCH = arm64 ]; then
 #  wget -P /tmp https://github.com/ralphie02/nvim-build/releases/latest/download/nvim.tar.gz
 # fi
-tar -xvf /tmp/nvim.tar.gz -C /tmp/nvim
+tar -xvf /tmp/nvim.tar.gz -C /tmp/nvim > /dev/null
 #sudo mkdir -p /usr/local/bin && \
 sudo rm -rf /usr/local/nvim && \
   sudo mv /tmp/nvim/** /usr/local/nvim && \
