@@ -12,8 +12,8 @@ echo -e '-------------------- RUBY: (START) Install via asdf + gemrc -----------
 #source ~/.asdf/asdf.sh
 asdf plugin add ruby
 [ $(asdf list all ruby | grep "$RUBY_VER" | wc -l) == 1 ] && \
-  asdf install ruby $RUBY_VER && asdf global ruby $RUBY_VER || \
-  (asdf install ruby latest && asdf global ruby latest) && \
+  asdf install ruby $RUBY_VER && asdf set ruby $RUBY_VER || \
+  (asdf install ruby latest && asdf set ruby latest) && \
   echo 'gem: --no-document' > ~/.gemrc
 echo -e '-------------------- RUBY: (END) Install via asdf + gemrc --------------------\n'
     
