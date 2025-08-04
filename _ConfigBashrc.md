@@ -15,10 +15,10 @@ sed -i '/^HISTSIZE=/{h;s/=.*/=200000/};${x;/^$/{s//HISTSIZE=200000/;H};x}' ~/.ba
 sed -i '/^HISTFILESIZE=/{h;s/=.*/=300000/};${x;/^$/{s//HISTFILESIZE=300000/;H};x}' ~/.bashrc
 echo -e '-------------------- BASHRC: (END) Update HISTSIZE & HISTFILESIZE --------------------\n'
 
-echo -e '-------------------- BASHRC: (START) Update PATH --------------------\n'
-OPT_BIN_PATH='export PATH=/opt/bin:$PATH'
-grep -qxF "$OPT_BIN_PATH" ~/.bashrc || echo "$OPT_BIN_PATH" >> ~/.bashrc
-echo -e '-------------------- BASHRC: (END) Update PATH --------------------\n'
+# echo -e '-------------------- BASHRC: (START) Update PATH --------------------\n'
+# OPT_BIN_PATH='export PATH=/opt/bin:$PATH'
+# grep -qxF "$OPT_BIN_PATH" ~/.bashrc || echo "$OPT_BIN_PATH" >> ~/.bashrc
+# echo -e '-------------------- BASHRC: (END) Update PATH --------------------\n'
 
 echo -e '-------------------- BASHRC: (START) Insert block to ~/.bashrc --------------------\n'
 
