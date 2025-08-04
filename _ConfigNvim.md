@@ -26,23 +26,23 @@ wget -O /tmp/nvim.tar.gz $NVIM_FPATH
 # elif [ $FILE_ARCH = arm64 ]; then
 #  wget -P /tmp https://github.com/ralphie02/nvim-build/releases/latest/download/nvim.tar.gz
 # fi
-tar -xvf /tmp/nvim.tar.gz -C /tmp/nvim && \
-  sudo mkdir -p /opt/bin && \
-  sudo rm -rf /opt/nvim && \
-  sudo mv /tmp/nvim/** /opt/nvim && \
-  sudo ln -sf /opt/nvim/bin/nvim /opt/bin/nvim
+tar -xvf /tmp/nvim.tar.gz -C /tmp/nvim
+#sudo mkdir -p /opt/bin && \
+sudo rm -rf /usr/local/nvim && \
+  sudo mv /tmp/nvim/** /usr/local/nvim && \
+  sudo ln -sf /usr/local/nvim/bin/nvim /usr/local/bin/nvim
 
 git -C ~/.config/nvim pull || git clone git@github.com:ralphie02/LazyVimRah.git ~/.config/nvim
 echo -e '-------------------- NVIM: (END) Download/Extract + LazyVimRah config --------------------\n'
 
 echo -e '-------------------- NVIM: (START) Lazygit download/extract --------------------\n'
 sudo rm -rf /tmp/lazygit* && \
-  mkdir -p /tmp/lazygit && \
-  wget -O /tmp/lazygit.tar.gz $LAZY_FPATH && \
-  tar -xvf /tmp/lazygit.tar.gz -C /tmp/lazygit && \
-  sudo mkdir -p /opt/bin && \
-  sudo rm -rf /opt/lazygit && \
-  sudo mv /tmp/lazygit /opt/lazygit && \
+  mkdir -p /tmp/lazygit
+wget -O /tmp/lazygit.tar.gz $LAZY_FPATH
+tar -xvf /tmp/lazygit.tar.gz -C /tmp/lazygit
+#sudo mkdir -p /opt/bin && \
+sudo rm -rf /usr/local/lazygit && \
+  sudo mv /tmp/lazygit /usr/local/lazygit && \
   sudo ln -sf /opt/lazygit/lazygit /opt/bin/lazygit
 echo -e '-------------------- NVIM: (END) Lazygit download/extract --------------------\n'
 ```
