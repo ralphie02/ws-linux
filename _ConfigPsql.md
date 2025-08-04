@@ -24,7 +24,7 @@ echo -e '-------------------- PSQL: (END) Update psql encoding -----------------
 
 echo -e '-------------------- PSQL: (START) Service start --------------------\n'
 PSQL_VERSION=$(psql --version | cut -d' ' -f3 | cut -d. -f1)
-sed -i.bak -E 's/^(host\s+all\s+)(all)(\s+127\.0\.0\.1\/32\s+)(.+$)/# \1\2\3\4\n\1ralphie02\3trust/; s/^(host\s+all\s+)(all)(\s+::1\/128\s+)(.+$)/# \1\2\3\4\n\1ralphie02\3trust/' /etc/postgresql/$PSQL_VERSION/main/pg_hba.conf
+sed -i.bak -E "s/^(host\s+all\s+)(all)(\s+127\.0\.0\.1\/32\s+)(.+$)/# \1\2\3\4\n\1$USER\3trust/; s/^(host\s+all\s+)(all)(\s+::1\/128\s+)(.+$)/# \1\2\3\4\n\1$USER\3trust/" /etc/postgresql/$PSQL_VERSION/main/pg_hba.conf
 echo -e '-------------------- PSQL: (END) Service start --------------------\n'
 
 
