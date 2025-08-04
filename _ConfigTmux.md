@@ -9,9 +9,10 @@ sudo apt install -y --no-install-recommends tmux
 echo -e '-------------------- TMUX: (END) Pkg install --------------------\n'
 
 echo -e '-------------------- TMUX: (START) Install gpakosz conf --------------------\n'
-git clone --single-branch https://github.com/gpakosz/.tmux.git ~/.tmux
-ln -s -f .tmux/.tmux.conf ~/
-cp .tmux/.tmux.conf.local ~/
+git -C ~/.tmux || \
+    git clone --single-branch https://github.com/gpakosz/.tmux.git ~/.tmux && \
+    ln -s -f .tmux/.tmux.conf ~/ && \
+    cp .tmux/.tmux.conf.local ~/
 echo -e '-------------------- TMUX: (END) Install gpakosz conf --------------------\n'
 
 echo -e '-------------------- TMUX: (START) Personalize gpakosz conf --------------------\n'
