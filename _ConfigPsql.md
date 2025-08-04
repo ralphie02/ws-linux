@@ -11,21 +11,21 @@ sudo apt install -y libpq-dev && \
 echo -e '-------------------- PSQL: (END) Pkg install --------------------\n'
 
 echo -e '-------------------- PSQL: (START) Update conf --------------------\n'
-${PSQL_VER:=$(psql --version | cut -d' ' -f3 | cut -d. -f1)}
-sed -i.bak -E "s/^(host\s+all\s+)(all)(\s+127\.0\.0\.1\/32\s+)(.+$)/# \1\2\3\4\n\1$USER\3trust/; s/^(host\s+all\s+)(all)(\s+::1\/128\s+)(.+$)/# \1\2\3\4\n\1$USER\3trust/" /etc/postgresql/$PSQL_VER/main/pg_hba.conf
+: ${PSQL_VER:=$(psql --version | cut -d' ' -f3 | cut -d. -f1)}
+sudo sed -i.bak -E "s/^(host\s+all\s+)(all)(\s+127\.0\.0\.1\/32\s+)(.+$)/# \1\2\3\4\n\1$USER\3trust/; s/^(host\s+all\s+)(all)(\s+::1\/128\s+)(.+$)/# \1\2\3\4\n\1$USER\3trust/" /etc/postgresql/$PSQL_VER/main/pg_hba.conf
 echo -e '-------------------- PSQL: (END) Update conf --------------------\n'
 
 echo -e '-------------------- PSQL: (START) Service start ------o--------------\n'
 sudo service postgresql start
 echo -e '-------------------- PSQL: (END) Service start --------------------\n'
 
-echo -e '-------------------- PSQL: (START) Update psql encoding --------------------\n'
-if cat /etc/*os-release | grep -q "ID=debian"; then
-  sudo -u postgres psql -c "update pg_database set encoding = pg_char_to_encoding('UTF8') where datname = 'postgres';"
-  sudo -u postgres psql -c "update pg_database set encoding = pg_char_to_encoding('UTF8') where datname = 'template0';"
-  sudo -u postgres psql -c "update pg_database set encoding = pg_char_to_encoding('UTF8') where datname = 'template1';"
-fi
-echo -e '-------------------- PSQL: (END) Update psql encoding --------------------\n'
+# echo -e '-------------------- PSQL: (START) Update psql encoding --------------------\n'
+# if cat /etc/*os-release | grep -q "ID=debian"; then
+#   sudo -u postgres psql -c "update pg_database set encoding = pg_char_to_encoding('UTF8') where datname = 'postgres';"
+#   sudo -u postgres psql -c "update pg_database set encoding = pg_char_to_encoding('UTF8') where datname = 'template0';"
+#   sudo -u postgres psql -c "update pg_database set encoding = pg_char_to_encoding('UTF8') where datname = 'template1';"
+# fi
+# echo -e '-------------------- PSQL: (END) Update psql encoding --------------------\n'
 
 # Create the PostgreSQL user with superuser privileges
 # sudo -u postgres createuser $USER -s
