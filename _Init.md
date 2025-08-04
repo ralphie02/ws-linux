@@ -12,7 +12,7 @@ run_config() {
 }
 
 # --------------- CONFIG SSH GIT FZF BASHRC VIMRC INPUTRC WSL_CONF --------------- #
-CONFIGS=(ConfigSshKey ConfigSshConf ConfigGit ConfigFzf ConfigBashrc ConfigVimrc ConfigInputrc ConfigWslConf ConfigNvim ConfigAsdf)
+CONFIGS=(ConfigSshKey ConfigSshConf ConfigGit ConfigFzf ConfigBashrc ConfigVimrc ConfigInputrc ConfigWslConf ConfigNvim ConfigAsdf ConfigTmux)
 CFG_VARS="BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH GIT_CONF_EMAIL=$GIT_CONF_EMAIL GIT_CONF_FNAME=$GIT_CONF_FNAME GIT_CONF_LNAME=$GIT_CONF_LNAME"
 for cfg in ${CONFIGS[@]}; do run_config $BASE_URL/_$cfg.md "$CFG_VARS"; done
 

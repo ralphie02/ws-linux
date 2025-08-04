@@ -4,6 +4,17 @@ tags: tmux
 ```bash
 #!/bin/bash
 
+echo -e '-------------------- TMUX: (START) Pkg install --------------------\n'
+sudo apt install -y --no-install-recommends tmux
+echo -e '-------------------- TMUX: (END) Pkg install --------------------\n'
+
+echo -e '-------------------- TMUX: (START) Install gpakosz conf --------------------\n'
+git clone --single-branch https://github.com/gpakosz/.tmux.git ~/.tmux
+ln -s -f .tmux/.tmux.conf ~/
+cp .tmux/.tmux.conf.local ~/
+echo -e '-------------------- TMUX: (END) Install gpakosz conf --------------------\n'
+
+echo -e '-------------------- TMUX: (START) Personalize gpakosz conf --------------------\n'
 CONFIG_FILE=~/.tmux.conf.local
 MARKER_REGEX="^# -- tpm -+\$"
 UNIQUE_LINE="# -- rah customizations --"
@@ -20,7 +31,7 @@ tmux_conf_theme_status_right=" #[fg=yellow]#(cd #{pane_current_path}; echo \"$(b
 # in copy mode, copying selection also copies to the OS clipboard
 tmux_conf_copy_to_os_clipboard=true
 
-# https://stackoverflow.com/questions/60309665/neovim-colorscheme-does-not-look-right-when-using-nvim-inside-tmux#comment124479399_60313682
+# https://stackoverflow.com/questions/60309665/neovim-colorscheme-does-not-look-right-when-using-nvim-inside-tmux#comment124479399_60313682 
 # which points to https://www.cyfyifanchen.com/blog/neovim-true-color
 set-option -ga terminal-overrides ",xterm-256color:Tc"
 
@@ -63,4 +74,6 @@ else
   ' "$CONFIG_FILE" > "${CONFIG_FILE}.tmp" && mv "${CONFIG_FILE}.tmp" "$CONFIG_FILE"
   echo "Block inserted successfully."
 fi
+
+echo -e '-------------------- TMUX: (END) Personalize gpakosz conf --------------------\n'
 ```
