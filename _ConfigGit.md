@@ -9,8 +9,8 @@ sudo apt install -y --no-install-recommends git
 echo -e '-------------------- GIT: (END) Install git --------------------\n'
     
 echo -e '-------------------- GIT: (START) Configs --------------------\n'
-[ "$(git config user.email)" != "" ] || git config --global user.email "$GIT_CONF_EMAIL" && \
-  [ "$(git config user.name)" != "" ] || git config --global user.name "$GIT_CONF_NAME" && \
+[ "$(git config user.email)" != "" ] || git config --global user.email $GIT_CONF_EMAIL && \
+  [ "$(git config user.name)" != "" ] || git config --global user.name $GIT_CONF_FNAME$GIT_CONF_LNAME && \
   git config color.ui || git config --global color.ui true && \
   git config pull.rebase || git config --global pull.rebase false && \
   git config push.default || git config --global push.default current && \
