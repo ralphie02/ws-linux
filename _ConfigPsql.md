@@ -11,8 +11,8 @@ sudo apt install -y libpq-dev && \
 echo -e '-------------------- PSQL: (END) Pkg install --------------------\n'
 
 echo -e '-------------------- PSQL: (START) Update conf --------------------\n'
-PSQL_VERSION=$(psql --version | cut -d' ' -f3 | cut -d. -f1)
-sed -i.bak -E "s/^(host\s+all\s+)(all)(\s+127\.0\.0\.1\/32\s+)(.+$)/# \1\2\3\4\n\1$USER\3trust/; s/^(host\s+all\s+)(all)(\s+::1\/128\s+)(.+$)/# \1\2\3\4\n\1$USER\3trust/" /etc/postgresql/$PSQL_VERSION/main/pg_hba.conf
+${PSQL_VER:=$(psql --version | cut -d' ' -f3 | cut -d. -f1)}
+sed -i.bak -E "s/^(host\s+all\s+)(all)(\s+127\.0\.0\.1\/32\s+)(.+$)/# \1\2\3\4\n\1$USER\3trust/; s/^(host\s+all\s+)(all)(\s+::1\/128\s+)(.+$)/# \1\2\3\4\n\1$USER\3trust/" /etc/postgresql/$PSQL_VER/main/pg_hba.conf
 echo -e '-------------------- PSQL: (END) Update conf --------------------\n'
 
 echo -e '-------------------- PSQL: (START) Service start ------o--------------\n'
