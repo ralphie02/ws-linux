@@ -32,10 +32,10 @@ elif [ $FILE_ARCH = arm64.tar.gz ]; then
     mkdir -p /tmp/obsidian
   wget -O /tmp/obsidian.tar.gz $FPATH && \
     tar -xvf /tmp/obsidian.tar.gz -C /tmp/obsidian
-  sudo mkdir -p /opt/bin && \
-    sudo rm -rf /opt/obsidian && \
-    sudo mv /tmp/obsidian/** /opt/obsidian && \
-    sudo ln -sf /opt/obsidian/obsidian /opt/bin/obsidian
+  sudo mkdir -p /usr/local/bin && \
+    sudo rm -rf /usr/local/obsidian && \
+    sudo mv /tmp/obsidian/** /usr/local/obsidian && \
+    sudo ln -sf /usr/local/obsidian/obsidian /usr/local/bin/obsidian
 fi
 echo -e '-------------------- OBSIDIAN: (END) Download/Extract --------------------\n'
 
