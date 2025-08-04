@@ -30,12 +30,12 @@ echo -e '-------------------- ASDF: (END) Download/extract --------------------\
 #$BLOCK_SCRIPT_PATH ~/.bashrc "$BASHRC" $CFG_BASENAME
 #echo -e '-------------------- ASDF: (END) Insert block to ~/.bashrc --------------------\n'
 
-#echo -e '-------------------- ASDF: (START) Insert block to ~/.asdfrc --------------------\n'
-## --------------- ASDFRC BEGIN BLOCK --------------- #
-#read -rd '' ASDFRC << 'EOF'
-#legacy_version_file = yes
-#EOF
-## --------------- ASDFRC END BLOCK --------------- #
-#$BLOCK_SCRIPT_PATH ~/.asdfrc "$ASDFRC" $CFG_BASENAME
-#echo -e '-------------------- ASDF: (END) Insert block to ~/.asdfrc --------------------\n'
+echo -e '-------------------- ASDF: (START) Insert block to ~/.asdfrc --------------------\n'
+# --------------- ASDFRC BEGIN BLOCK --------------- #
+read -rd '' ASDFRC << 'EOF'
+legacy_version_file = yes
+EOF
+# --------------- ASDFRC END BLOCK --------------- #
+$BLOCK_SCRIPT_PATH ~/.asdfrc "$ASDFRC" $CFG_BASENAME
+echo -e '-------------------- ASDF: (END) Insert block to ~/.asdfrc --------------------\n'
 ```
