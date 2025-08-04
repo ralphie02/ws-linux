@@ -11,10 +11,12 @@ run_config() {
     wget -qO- $BASE_URL/$1 | sed '$ d' | sed '0,/```bash/d' | sed "/\#\!.*bash\s*$/a \\\nCFG_BASENAME=$1 $2" | bash
 }
 
-# --------------- CONFIG SSH GIT FZF BASHRC VIMRC INPUTRC WSL_CONF --------------- #
-CONFIGS=(ConfigSshKey ConfigSshConf ConfigGit ConfigFzf ConfigBashrc ConfigVimrc ConfigInputrc ConfigWslConf ConfigNvim ConfigAsdf ConfigTmux)
-CFG_VARS="BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH GIT_CONF_EMAIL=$GIT_CONF_EMAIL GIT_CONF_FNAME=$GIT_CONF_FNAME GIT_CONF_LNAME=$GIT_CONF_LNAME"
-for cfg in ${CONFIGS[@]}; do run_config _$cfg.md "$CFG_VARS"; done
+# --------------- CONFIG GIT --------------- #
+run_config _ConfigGit.md "GIT_CONF_EMAIL=$GIT_CONF_EMAIL GIT_CONF_FNAME=$GIT_CONF_FNAME GIT_CONF_LNAME=$GIT_CONF_LNAME"
+
+# --------------- CONFIG SSH FZF BASHRC VIMRC INPUTRC WSL_CONF NVIM ASDF TMUX --------------- #
+CONFIGS=(ConfigSshKey ConfigSshConf ConfigFzf ConfigBashrc ConfigVimrc ConfigInputrc ConfigWslConf ConfigNvim ConfigAsdf ConfigTmux)
+for cfg in ${CONFIGS[@]}; do run_config _$cfg.md "BLOCK_SCRIPT_PATH=$BLOCK_SCRIPT_PATH"; done
 
 # --------------- CONFIG NODE --------------- #
 run_config _ConfigNode.md
