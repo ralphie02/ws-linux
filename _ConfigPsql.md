@@ -27,12 +27,14 @@ echo -e '-------------------- PSQL: (END) Service start --------------------\n'
 # fi
 # echo -e '-------------------- PSQL: (END) Update psql encoding --------------------\n'
 
+echo -e '-------------------- PSQL: (START) Config $USER & DB in postgres --------------------\n'
 # Create the PostgreSQL user with superuser privileges
-sudo -u postgres createuser $USER -s
+sudo --login -u postgres createuser $USER -s
+createdb -p 5432
+echo -e '-------------------- PSQL: (END) Config $USER & DB in postgres --------------------\n'
 
 # # Optional: Set a password for the new user
 # (not run; added for info) sudo -u postgres psql -c "ALTER USER $USERNAME WITH PASSWORD 'your_password';"
-# (commented out for now) createdb -p 5432
 
 if grep -qi microsoft /proc/version; then 
 echo -e '-------------------- PSQL: (START) Insert block to ~/.bashrc --------------------\n'
