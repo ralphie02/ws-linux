@@ -15,7 +15,7 @@ echo -e '-------------------- PSQL: (START) Update conf --------------------\n'
 sudo sed -i.bak -E "s/^(host\s+all\s+)(all)(\s+127\.0\.0\.1\/32\s+)(.+$)/# \1\2\3\4\n\1$USER\3trust/; s/^(host\s+all\s+)(all)(\s+::1\/128\s+)(.+$)/# \1\2\3\4\n\1$USER\3trust/" /etc/postgresql/$PSQL_VER/main/pg_hba.conf
 echo -e '-------------------- PSQL: (END) Update conf --------------------\n'
 
-echo -e '-------------------- PSQL: (START) Service start ------o--------------\n'
+echo -e '-------------------- PSQL: (START) Service start --------------------\n'
 sudo service postgresql start
 echo -e '-------------------- PSQL: (END) Service start --------------------\n'
 
@@ -34,6 +34,7 @@ echo -e '-------------------- PSQL: (END) Service start --------------------\n'
 # (not run; added for info) sudo -u postgres psql -c "ALTER USER $USERNAME WITH PASSWORD 'your_password';"
 # (commented out for now) createdb -p 5432
 
+if grep -qi microsoft /proc/version; then 
 echo -e '-------------------- PSQL: (START) Insert block to ~/.bashrc --------------------\n'
 # --------------- PSQL_BASHRC BEGIN BLOCK --------------- #
 read -rd '' PSQL_BASHRC << 'EOF'
@@ -43,4 +44,5 @@ EOF
 
 $BLOCK_SCRIPT_PATH ~/.bashrc "$PSQL_BASHRC" $CFG_BASENAME
 echo -e '-------------------- PSQL: (END) Insert block to ~/.bashrc --------------------\n'
+fi
 ```

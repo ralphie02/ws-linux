@@ -10,8 +10,8 @@ tags: [rails, rails/conf]
 
 echo -e '-------------------- RAILS: (START) Set corepack/yarn --------------------\n'
 #source ~/.asdf/asdf.sh
-~/.asdf/shims/corepack enable && \
-  ~/.asdf/shims/yarn set version stable
+#~/.asdf/shims/corepack enable && \
+  #~/.asdf/shims/yarn set version stable
   #~/.asdf/shims/yarn install
 echo -e '-------------------- RAILS: (END) Set corepack/yarn --------------------\n'
 
