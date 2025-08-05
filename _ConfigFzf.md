@@ -18,7 +18,7 @@ run_install() {
   # (when $SRC_FZF is hardcoded) sed -i /'[ -f ~/.fzf.bash ] && source ~\/\.fzf\.bash'/d
 }
 if [ -d ~/.fzf/.git ]; then 
-  git -C ~/.fzf pull | grep -q "up to date" && run_install
+  git -C ~/.fzf pull | grep -q "up to date" || run_install
 else
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   run_install

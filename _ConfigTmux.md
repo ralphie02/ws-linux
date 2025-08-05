@@ -14,7 +14,7 @@ config_tmux() {
   cp .tmux/.tmux.conf.local ~/
 }
 if [ -d ~/.tmux/.git ]; then 
-  git -C ~/.tmux pull | grep -q "up to date" && config_tmux
+  git -C ~/.tmux pull | grep -q "up to date" || config_tmux
 else
   git clone --single-branch https://github.com/gpakosz/.tmux.git ~/.tmux
   config_tmux
