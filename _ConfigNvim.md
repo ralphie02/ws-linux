@@ -16,9 +16,9 @@ echo -e '-------------------- NVIM: (END) Set env vars --------------------\n'
 
 echo -e '-------------------- NVIM: (START) Download/Extract/Install --------------------\n'
 if [ $(nvim --version 2>/dev/null | head -n 1 | cut -d' ' -f2) = $NVIM_VER ]; then
-  echo -e "nvim: $NVIM_VER already installed"
+  echo -e "$NVIM_VER already installed"
 else
-  echo -e "nvim: installing $NVIM_VER"
+  echo -e "Installing $NVIM_VER"
   sudo rm -rf /tmp/nvim* && \
     mkdir -p /tmp/nvim
   wget -O /tmp/nvim.tar.gz $NVIM_URL
