@@ -28,7 +28,7 @@ echo -e '-------------------- PSQL: (END) Service start --------------------\n'
 # echo -e '-------------------- PSQL: (END) Update psql encoding --------------------\n'
 
 # Create the PostgreSQL user with superuser privileges
-# sudo -u postgres createuser $USER -s
+sudo -u postgres createuser $USER -s
 
 # # Optional: Set a password for the new user
 # (not run; added for info) sudo -u postgres psql -c "ALTER USER $USERNAME WITH PASSWORD 'your_password';"
