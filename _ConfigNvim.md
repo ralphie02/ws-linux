@@ -35,20 +35,26 @@ git -C ~/.config/nvim pull || git clone git@github.com:ralphie02/LazyVimRah.git 
 echo -e '-------------------- NVIM: (END) LazyVimRah config --------------------\n'
 
 echo -e '-------------------- NVIM: (START LAZYGIT) Set env vars --------------------\n'
-LAZY_FPATH=$(wget -qO- https://api.github.com/repos/jesseduffield/lazygit/releases/latest | grep browser_download_url | cut -d\" -f4 | grep $FILE_ARCH | grep linux)
-# VERSION=$(echo $LAZY_FPATH | rev | cut -d\/ -f2 | rev | cut -c2-)
-# TAR_FILE=$(echo $LAZY_FPATH | rev | cut -d\/ -f1 | rev)
+LAZY_URL=$(wget -qO- https://api.github.com/repos/jesseduffield/lazygit/releases/latest | grep browser_download_url | cut -d\" -f4 | grep $FILE_ARCH | grep linux)
+# VERSION=$(echo $LAZY_URL | rev | cut -d\/ -f2 | rev | cut -c2-)
+# TAR_FILE=$(echo $LAZY_URL | rev | cut -d\/ -f1 | rev)
 # UNTARRED_DIR=$(echo ${TAR_FILE%.*.*})
+LAZY_VER=$(echo $LAZY_URL | cut -d\/ -f8)
 echo -e '-------------------- NVIM: (END LAZYGIT) Set env vars --------------------\n'
 
 echo -e '-------------------- NVIM: (START) Lazygit download/extract --------------------\n'
-sudo rm -rf /tmp/lazygit* && \
-  mkdir -p /tmp/lazygit
-wget -O /tmp/lazygit.tar.gz $LAZY_FPATH
-tar -xvf /tmp/lazygit.tar.gz -C /tmp/lazygit
-#sudo mkdir -p /opt/bin && \
-sudo rm -rf /usr/local/lazygit && \
-  sudo mv /tmp/lazygit /usr/local/lazygit && \
-  sudo ln -sf /usr/local/lazygit/lazygit /usr/local/bin/lazygit
+if [ "v$(lazygit -v | cut -d, -f4 | cut -d= -f2)" = $LAZY_VER ]; then
+  echo -e "$LAZY_VER already installed"
+else
+  echo -e "Installing $LAZY_VER"
+  sudo rm -rf /tmp/lazygit* && \
+    mkdir -p /tmp/lazygit
+  wget -O /tmp/lazygit.tar.gz $LAZY_URL
+  tar -xvf /tmp/lazygit.tar.gz -C /tmp/lazygit
+  #sudo mkdir -p /opt/bin && \
+  sudo rm -rf /usr/local/lazygit && \
+    sudo mv /tmp/lazygit /usr/local/lazygit && \
+    sudo ln -sf /usr/local/lazygit/lazygit /usr/local/bin/lazygit
+fi
 echo -e '-------------------- NVIM: (END) Lazygit download/extract --------------------\n'
 ```
