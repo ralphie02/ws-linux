@@ -22,6 +22,7 @@ fi
 echo -e '-------------------- TMUX: (END) Install gpakosz conf --------------------\n'
 
 echo -e '-------------------- TMUX: (START) Personalize gpakosz conf --------------------\n'
+# (START) Fully written by chatgpt
 CONFIG_FILE=~/.tmux.conf.local
 MARKER_REGEX="^# -- tpm -+\$"
 UNIQUE_LINE="# -- rah customizations --"
@@ -81,6 +82,6 @@ else
   ' "$CONFIG_FILE" > "${CONFIG_FILE}.tmp" && mv "${CONFIG_FILE}.tmp" "$CONFIG_FILE"
   echo "Block inserted successfully."
 fi
-
+# (END) Fully written by chatgpt
 echo -e '-------------------- TMUX: (END) Personalize gpakosz conf --------------------\n'
 ```
