@@ -12,8 +12,9 @@ echo -e '-------------------- ASDF: (END) Set env vars --------------------\n'
 
 echo -e '-------------------- ASDF: (START) Download/extract --------------------\n'
 if [ $(asdf -v 2>/dev/null | cut -d' ' -f3) = $ASDF_VER ]; then
-  echo -e 
+  echo -e "asdf: $ASDF_VER already installed"
 else
+  echo -e "asdf: installing $ASDF_VER"
   sudo rm -rf /tmp/asdf* && \
     mkdir -p /tmp/asdf
   wget -O /tmp/asdf.tar.gz $ASDF_URL

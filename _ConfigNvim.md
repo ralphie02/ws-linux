@@ -14,8 +14,11 @@ NVIM_URL=$(wget -qO- https://api.github.com/repos/neovim/neovim/releases/latest 
 NVIM_VER=$(echo $NVIM_URL | cut -d\/ -f8)
 echo -e '-------------------- NVIM: (END) Set env vars --------------------\n'
 
-echo -e '-------------------- NVIM: (START) Download/Extract --------------------\n'
-[ $(nvim --version 2>/dev/null | head -n 1 | cut -d' ' -f2) = $NVIM_VER ] || {
+echo -e '-------------------- NVIM: (START) Download/Extract/Install --------------------\n'
+if [ $(nvim --version 2>/dev/null | head -n 1 | cut -d' ' -f2) = $NVIM_VER ]; then
+  echo -e "nvim: $NVIM_VER already installed"
+else
+  echo -e "nvim: installing $NVIM_VER"
   sudo rm -rf /tmp/nvim* && \
     mkdir -p /tmp/nvim
   wget -O /tmp/nvim.tar.gz $NVIM_URL
@@ -24,8 +27,8 @@ echo -e '-------------------- NVIM: (START) Download/Extract -------------------
   sudo rm -rf /usr/local/nvim && \
     sudo mv /tmp/nvim/** /usr/local/nvim && \
     sudo ln -sf /usr/local/nvim/bin/nvim /usr/local/bin/nvim
-}
-echo -e '-------------------- NVIM: (END) Download/Extract --------------------\n'
+fi
+echo -e '-------------------- NVIM: (END) Download/Extract/Install --------------------\n'
 
 echo -e '-------------------- NVIM: (START) LazyVimRah config --------------------\n'
 git -C ~/.config/nvim pull || git clone git@github.com:ralphie02/LazyVimRah.git ~/.config/nvim
