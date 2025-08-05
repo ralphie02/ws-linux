@@ -27,11 +27,24 @@ echo -e '-------------------- PSQL: (END) Service start --------------------\n'
 # fi
 # echo -e '-------------------- PSQL: (END) Update psql encoding --------------------\n'
 
-echo -e '-------------------- PSQL: (START) Config $USER & DB in postgres --------------------\n'
-# Create the PostgreSQL user with superuser privileges
-sudo --login -u postgres createuser $USER -s
-createdb -p 5432
-echo -e '-------------------- PSQL: (END) Config $USER & DB in postgres --------------------\n'
+echo -e '-------------------- PSQL: (START) Config $USER --------------------\n'
+ROLE_EXIST=$(sudo --login -u postgres psql -tAc "SELECT 1 FROM pg_roles WHERE rolname='$USER'")
+if [ $ROLE_EXIST != 1 ]; then
+  # Create the PostgreSQL user with superuser privileges
+  sudo --login -u postgres createuser $USER -s
+else
+  echo "Role '$USER' already exists. Skipping"  
+fi
+echo -e '-------------------- PSQL: (END) Config $USER --------------------\n'
+
+echo -e '-------------------- PSQL: (START) Config DB --------------------\n'
+DB_EXIST=$(sudo --login -u postgres psql -lqt | cut -d \| -f 1 | grep -w "$USER")
+if [ -z $DB_EXIST ]; then
+  createdb -p 5432
+else
+  echo "Database '$USER' already exists. Skipping"
+fi
+echo -e '-------------------- PSQL: (END) Config DB --------------------\n'
 
 # # Optional: Set a password for the new user
 # (not run; added for info) sudo -u postgres psql -c "ALTER USER $USERNAME WITH PASSWORD 'your_password';"
