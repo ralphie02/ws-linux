@@ -10,7 +10,7 @@ if git -C ~/.fzf pull; then
 else
   echo 'Installing'
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-  ~/.fzf/install
+  ~/.fzf/install --all
   
   # Add .fzf.bash sourcing in ~/.profile \
   SRC_FZF='[ -f ~/.fzf.bash ] && source ~/.fzf.bash'
