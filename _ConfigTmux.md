@@ -27,7 +27,21 @@ CONFIG_FILE=~/.tmux.conf.local
 MARKER_REGEX="^# -- tpm -+\$"
 UNIQUE_LINE="# -- rah customizations --"
 
-BLOCK=$(cat <<'EOF'
+# Check if the unique line already exists
+if grep -qF "$UNIQUE_LINE" "$CONFIG_FILE"; then
+  echo "Block already exists. No changes made."
+else
+  # Insert above the marker line using regex
+  awk -v regex="$MARKER_REGEX" '
+    FNR==NR { block[NR] = $0; next }
+    {
+      if (!inserted && $0 ~ regex) {
+        for (i = 1; i <= length(block); i++) print block[i]
+        inserted = 1
+      }
+      print
+    }
+  ' <(cat << 'EOF'
 # -- rah customizations -------------------------------------------------------
 
 # Update status bar
@@ -62,24 +76,9 @@ bind C-n new-session
 # window
 unbind c
 bind n new-window
-EOF
-)
 
-# Check if the unique line already exists
-if grep -qF "$UNIQUE_LINE" "$CONFIG_FILE"; then
-  echo "Block already exists. No changes made."
-else
-  # Insert above the marker line using regex
-  awk -v block="$BLOCK\n" -v regex="$MARKER_REGEX" '
-    BEGIN { inserted = 0 }
-    {
-      if (!inserted && $0 ~ regex) {
-        print block
-        inserted = 1
-      }
-      print
-    }
-  ' "$CONFIG_FILE" > "${CONFIG_FILE}.tmp" && mv "${CONFIG_FILE}.tmp" "$CONFIG_FILE"
+EOF
+  ) "$CONFIG_FILE" > "${CONFIG_FILE}.tmp" && mv "${CONFIG_FILE}.tmp" "$CONFIG_FILE"
   echo "Block inserted successfully."
 fi
 # (END) Fully written by chatgpt
