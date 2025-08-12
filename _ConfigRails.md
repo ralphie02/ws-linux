@@ -8,6 +8,11 @@ tags: [rails, rails/conf]
 #     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
 #     sudo apt-get install -y --no-install-recommends yarn
 
+echo -e '-------------------- RAILS: (START) Pkg install --------------------\n'
+# some gem installation require bz2 file to be extracted... (ie. gpgme)
+sudo apt install -y --no-install-recommends bzip2 
+echo -e '-------------------- RAILS: (END) Pkg install --------------------\n'
+
 #echo -e '-------------------- RAILS: (START) Set corepack/yarn --------------------\n'
 #source ~/.asdf/asdf.sh
 #~/.asdf/shims/corepack enable && \
