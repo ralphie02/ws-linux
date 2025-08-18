@@ -27,9 +27,6 @@ echo -e '-------------------- WSL CONF: (START) Insert block to /etc/wsl.conf --
 #
 # https://docs.docker.com/desktop/wsl/#prerequisites - tip
 # https://learn.microsoft.com/en-us/windows/wsl/wsl-config#experimental-settings
-# [experimental]
-# autoMemoryReclaim = gradual
-# sparseVhd = true
 
 # --------------- WSL_CONF BEGIN BLOCK --------------- #
 read -rd '' WSL_CONF << 'EOF'
@@ -43,6 +40,10 @@ generateResolvConf = false
 # https://github.com/microsoft/WSL/issues/4966
 [interop]
 appendWindowsPath = false
+
+[experimental]
+autoMemoryReclaim = gradual
+sparseVhd = true
 EOF
 # --------------- WSL_CONF END BLOCK --------------- #
 
