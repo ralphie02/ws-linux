@@ -33,7 +33,7 @@ mkdir -p $HOME/.termux/boot
 
 # Configure git
 git config --global --add safe.directory '*'
-git config --global user.name "Ralph - Android"
+git config --global user.name "Ralph-Android"
 git config --global user.email ralphie02@live.com
 
 # Configure git script to sync repo + submodules
