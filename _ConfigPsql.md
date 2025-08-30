@@ -12,24 +12,26 @@ echo -e '-------------------- PSQL: (END) Pkg install --------------------\n'
 
 echo -e '-------------------- PSQL: (START) Update conf --------------------\n'
 : ${PSQL_VER:=$(psql --version | cut -d' ' -f3 | cut -d. -f1)}
+
+# Update config in /etc/postgresql/$PSQL_VER/main/pg_hba.conf
+#
+# From:
+#    host    all     all     127.0.0.1/32    <some-value>
+#    ...
+#    host    all     all     ::1/128 <some-value>
+# To:
+#    # host  all     all     127.0.0.1/32    <some-value>
+#    host    all     ralphie02       127.0.0.1/32    trust
+#    ...
+#    # host  all     all     ::1/128 <some-value>
+#    host    all     ralphie02       ::1/128 trust
 GREEN="\033[0;32m"
 NO_COLOR="\033[0m"
 PG_HBA_MSG="\n${GREEN}UPDATING:\n\nFrom:\nhost\tall\tall\t127.0.0.1/32\t<some-value>\n...\nhost\tall\tall\t::1/128\t<some-value>\n\nTo:\n# host\tall\tall\t127.0.0.1/32\t<some-value>\nhost\tall\tralphie02\t127.0.0.1/32\ttrust\n...\n# host\tall\tall\t::1/128\t<some-value>\nhost\tall\tralphie02\t::1/128\ttrust\n${NO_COLOR}"
 echo -e $PG_HBA_MSG
 sudo sed -i.bak -E "s/^(host\s+all\s+)(all)(\s+127\.0\.0\.1\/32\s+)(.+$)/# \1\2\3\4\n\1$USER\3trust/; s/^(host\s+all\s+)(all)(\s+::1\/128\s+)(.+$)/# \1\2\3\4\n\1$USER\3trust/" /etc/postgresql/$PSQL_VER/main/pg_hba.conf
+
 echo -e '-------------------- PSQL: (END) Update conf --------------------\n'
-
-echo -e '-------------------- PSQL: (START) Service start --------------------\n'
-sudo service postgresql start
-echo -e '-------------------- PSQL: (END) Service start --------------------\n'
-
-# echo -e '-------------------- PSQL: (START) Update psql encoding --------------------\n'
-# if cat /etc/*os-release | grep -q "ID=debian"; then
-#   sudo -u postgres psql -c "update pg_database set encoding = pg_char_to_encoding('UTF8') where datname = 'postgres';"
-#   sudo -u postgres psql -c "update pg_database set encoding = pg_char_to_encoding('UTF8') where datname = 'template0';"
-#   sudo -u postgres psql -c "update pg_database set encoding = pg_char_to_encoding('UTF8') where datname = 'template1';"
-# fi
-# echo -e '-------------------- PSQL: (END) Update psql encoding --------------------\n'
 
 echo -e '-------------------- PSQL: (START) Config $USER --------------------\n'
 ROLE_EXIST=$(sudo --login -u postgres psql -tAc "SELECT 1 FROM pg_roles WHERE rolname='$USER'")
