@@ -45,6 +45,30 @@ IRB.conf[:SAVE_HISTORY] = 1000000
 IRB.conf[:USE_MULTILINE] = false
 
 AwesomePrint.irb! if defined?(AwesomePrint)
+
+class Object
+  def interesting_methods
+    case self.class
+    when Class
+      self.public_methods.sort - Object.public_methods
+    when Module
+      self.public_methods.sort - Module.public_methods
+    else
+      self.public_methods.sort - Object.new.public_methods
+    end
+  end
+end
+
+module Kernel
+  def require_relative(file)
+    $:.unshift Dir.pwd
+    require file
+  end
+
+  def rah_guid(s)
+    s.scan(/[a-f0-9-]{36}/).first
+  end
+end
 EOF
 # --------------- IRBRC END BLOCK --------------- #
 
