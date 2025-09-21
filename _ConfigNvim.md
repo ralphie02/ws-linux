@@ -5,7 +5,7 @@ tags: bash, fzf, sed
 #!/bin/bash
 
 echo -e '-------------------- NVIM: (START) Install fd|ripgrep|xclip --------------------\n'
-sudo apt install  -y --no-install-recommends fd-find ripgrep xclip
+sudo apt install  -y --no-install-recommends fd-find ripgrep xclip unzip
 echo -e '-------------------- NVIM: (END) Install fd|ripgrep|xclip --------------------\n'
 
 echo -e '-------------------- NVIM: (START) Set env vars --------------------\n'
