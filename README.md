@@ -1,7 +1,6 @@
 ### Windows
 - [ ] Create `shared` dir in `%userprofile%` (*ConfigSshKey* generates a symlink: Windows -> WSL) ^043c19
 - [ ] `winget install Git.MinGit` ^989783
-    
     - 
         ```bash
         ssh-keygen -t rsa -b 4096 -C "<computer-name> <email>"
@@ -13,7 +12,6 @@
         
         ```
 - [ ] Install wsl2 with distro
-    
     -  
         ```powershell
         wsl --install -d debian
