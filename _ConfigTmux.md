@@ -24,7 +24,7 @@ echo -e '-------------------- TMUX: (END) Install gpakosz conf -----------------
 echo -e '-------------------- TMUX: (START) Personalize gpakosz conf --------------------\n'
 # (START) Fully written by chatgpt
 CONFIG_FILE=~/.tmux.conf.local
-MARKER_REGEX="^# -- tpm -+\$"
+MARKER_REGEX="^# -- custom variables -+\$"
 UNIQUE_LINE="# -- rah customizations --"
 
 # Check if the unique line already exists
