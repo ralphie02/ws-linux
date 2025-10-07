@@ -10,8 +10,8 @@ echo -e '-------------------- TMUX: (END) Pkg install --------------------\n'
 
 echo -e '-------------------- TMUX: (START) Install gpakosz conf --------------------\n'
 config_tmux() {
-  ln -sf .tmux/.tmux.conf ~/
-  cp .tmux/.tmux.conf.local ~/
+  ln -sf ~/.tmux/.tmux.conf ~/
+  cp ~/.tmux/.tmux.conf.local ~/
 }
 if [ -d ~/.tmux/.git ]; then 
   git -C ~/.tmux pull | grep -q "up to date" || config_tmux
