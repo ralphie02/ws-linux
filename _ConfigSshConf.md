@@ -10,6 +10,12 @@ echo -e '-------------------- SSH CONF: (START) --------------------\n'
 read -rd '' SSH_CFG << 'EOF'
 Host *
     StrictHostKeyChecking no
+
+    # For Mac?
+    # AddKeysToAgent yes
+    # UseKeychain yes
+    # bash> ssh-add -D
+    # bash> ssh-add -K ~/.ssh/*
 EOF
 # --------------- SSH_CFG END BLOCK --------------- #
 
