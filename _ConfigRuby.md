@@ -38,13 +38,27 @@ echo -e '-------------------- RUBY: (END) Install via asdf + gemrc -------------
 echo -e '-------------------- RUBY: (START) Insert block to ~/.irbrc --------------------\n'
 # --------------- IRBRC BEGIN BLOCK --------------- #
 read -rd '' IRBRC << 'EOF'
-require "awesome_print"
+begin
+  require "awesome_print"
+  AwesomePrint.irb!
 
-IRB.conf[:EVAL_HISTORY] = 1000000
-IRB.conf[:SAVE_HISTORY] = 1000000
-IRB.conf[:USE_MULTILINE] = false
+  if %w[true t yes y 1].include? ENV["DOCKER_ENV"]
+    puts "(DOCKER_ENV) Loading guard against ap() being called without args"
+    module Kernel
+      alias_method :ap_without_guard, :ap
+      def ap(obj = nil, options = {})
+        return ap_without_guard(obj, options) unless obj.nil?
+        nil
+      end
+    end
+  end
+rescue LoadError
+  # awesome_print not installed, skip integration
+end
 
-AwesomePrint.irb! if defined?(AwesomePrint)
+IRB.conf[:EVAL_HISTORY]  = 1_000_000
+IRB.conf[:SAVE_HISTORY]  = 1_000_000
+# IRB.conf[:USE_MULTILINE] = false # uncomment to disable multiline autocomplete selection
 
 class Object
   def interesting_methods
