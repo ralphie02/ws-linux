@@ -24,8 +24,8 @@ begin
   require "awesome_print"
   AwesomePrint.irb!
 
-  if %w[true t yes y 1].include? ENV["LOCAL"]
-    puts "(LOCAL) Loading guard against ap() being called without args"
+  if %w[true t yes y 1].include? ENV["DOCKER_ENV"]
+    puts "(DOCKER_ENV) Loading guard against ap() being called without args"
     module Kernel
       alias_method :ap_without_guard, :ap
       def ap(obj = nil, options = {})
