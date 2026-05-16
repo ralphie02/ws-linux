@@ -42,7 +42,8 @@ else
       print
     }
   ' <(cat << 'EOF'
-# -- rah customizations -------------------------------------------------------
+##------ BEGIN: _ConfigInputrc.md
+## -- rah customizations -------------------------------------------------------
 
 # Update status bar
 tmux_conf_battery_status_charging="🔌"     # U+1F50C
