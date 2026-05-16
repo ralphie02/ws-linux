@@ -25,7 +25,7 @@ echo -e '-------------------- TMUX: (START) Personalize gpakosz conf -----------
 # (START) Fully written by chatgpt
 CONFIG_FILE=~/.tmux.conf.local
 MARKER_REGEX="^# -- custom variables -+\$"
-UNIQUE_LINE="# -- rah customizations --"
+UNIQUE_LINE=$(printf "BEGIN: _ConfigTmux.md\nEND: _ConfigTmux.md")
 
 # Check if the unique line already exists
 if grep -qF "$UNIQUE_LINE" "$CONFIG_FILE"; then
@@ -42,8 +42,7 @@ else
       print
     }
   ' <(cat << 'EOF'
-##------ BEGIN: _ConfigInputrc.md
-## -- rah customizations -------------------------------------------------------
+##------ BEGIN: _ConfigTmux.md - rah customizations ----------------------------
 
 # Update status bar
 tmux_conf_battery_status_charging="🔌"     # U+1F50C
@@ -78,6 +77,7 @@ bind C-n new-session
 unbind c
 bind n new-window
 
+##------ END: _ConfigTmux.md - rah customizations ----------------------------
 EOF
   ) "$CONFIG_FILE" > "${CONFIG_FILE}.tmp" && mv "${CONFIG_FILE}.tmp" "$CONFIG_FILE"
   echo "Block inserted successfully."
